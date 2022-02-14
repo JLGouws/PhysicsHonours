@@ -1,0 +1,515 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     21842,        507]
+NotebookOptionsPosition[     18883,        451]
+NotebookOutlinePosition[     19336,        469]
+CellTagsIndexPosition[     19293,        466]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["The Inverted Pendulum", "Title",
+ CellChangeTimes->{{3.822700199577424*^9, 
+  3.8227002101107683`*^9}},ExpressionUUID->"62060b8a-9db2-4dbb-9f0c-\
+c916160fdeb9"],
+
+Cell[CellGroupData[{
+
+Cell["Background", "Subsection",
+ CellChangeTimes->{{3.822714787060532*^9, 3.8227147922773247`*^9}, {
+  3.8227293236275177`*^9, 
+  3.8227293247608232`*^9}},ExpressionUUID->"f87661af-dabb-4124-94bb-\
+cc360983fa3e"],
+
+Cell[TextData[{
+ "This is a brief refresher on some basic ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " functionality, centred around an investigation of the inverted pendulum. \
+Have a look at this ",
+ ButtonBox["Youtube video",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://www.youtube.com/watch?v=5oGYCxkgnHQ"], None},
+  ButtonNote->"https://www.youtube.com/watch?v=5oGYCxkgnHQ"],
+ ". Your goal is to derive the pendulum\[CloseCurlyQuote]s equation of \
+motion, solve it numerically, and to present the results visually for some \
+different parameter choices."
+}], "Text",
+ CellChangeTimes->{{3.8227292379699607`*^9, 3.822729306794137*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"fbecdd27-c157-4eb8-b332-4bdbb6450211"],
+
+Cell[TextData[{
+ "Let \[Theta] denote the angle of the pendulum with respect to the downward \
+direction. The pendulum consists of a massless rod with length l with a mass \
+m attached to the end. Its pivot oscillates vertically with a displacement \
+d[t]=a Sin[\[Omega] t]. We will work in units where all lengths are expressed \
+as multiples of l, while time is measured in multiples of ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"1", "/", 
+    SubscriptBox["\[Omega]", "0"]}], TraditionalForm]],ExpressionUUID->
+  "a973ed3a-660d-4e37-b776-3c9cf556494e"],
+ " where ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["\[Omega]", "0"], TraditionalForm]],ExpressionUUID->
+  "eb454810-d313-4862-a6e4-11adb26f7819"],
+ "=Sqrt[g/l] is the pendulum\[CloseCurlyQuote]s natural frequency. In these \
+units l=1 and g=1. As seen in the video, for right combination of the pivot\
+\[CloseCurlyQuote]s oscillation amplitude a and frequency \[Omega] the point \
+\[Theta]=180\[Degree] will turn into a stable equilibrium point."
+}], "Text",
+ CellChangeTimes->{
+  3.8227240421839457`*^9, {3.8227240771611404`*^9, 3.8227241101606417`*^9}, {
+   3.8227297885605383`*^9, 3.8227297926939545`*^9}, {3.8238484896751857`*^9, 
+   3.8238485255932903`*^9}, {3.8238506071179543`*^9, 3.823850764248164*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"8f4e3e59-9887-43b7-9a42-c3ec4163d5c8"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", 
+    RowBox[{"\"\<Global`*\>\"", ",", "Derivative"}], "]"}], ";"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{
+   "Run", " ", "if", " ", "you", " ", "want", " ", "to", " ", "clear", " ", 
+    "all", " ", 
+    RowBox[{"definitions", "."}]}], "*)"}]}]], "Input",
+ CellChangeTimes->{{3.684395194299912*^9, 3.6843952343499126`*^9}, {
+   3.6843952764387865`*^9, 3.6843954722845306`*^9}, {3.684395583576126*^9, 
+   3.6843955912357397`*^9}, {3.684402859895732*^9, 3.6844029698291254`*^9}, {
+   3.684403078350131*^9, 3.684403111325017*^9}, {3.68440319078656*^9, 
+   3.6844032368222413`*^9}, {3.684403286055928*^9, 3.684403424397971*^9}, {
+   3.684404103561353*^9, 3.684404104091754*^9}, {3.684404640358296*^9, 
+   3.6844046706701493`*^9}, {3.687570818137021*^9, 3.68757082974357*^9}, {
+   3.708854326525195*^9, 3.7088543322037625`*^9}, {3.7088543990049024`*^9, 
+   3.7088544050890193`*^9}, {3.7088546124045644`*^9, 
+   3.7088546384626894`*^9}, {3.7088546728446484`*^9, 3.708854715088907*^9}, {
+   3.7088561128718314`*^9, 3.708856201654277*^9}, {3.7088563232773504`*^9, 
+   3.7088563313115563`*^9}, {3.7088563736978436`*^9, 
+   3.7088564084243336`*^9}, {3.7088564412319746`*^9, 3.70885652308428*^9}, {
+   3.7088568106530666`*^9, 3.7088568110274453`*^9}, {3.708857909633005*^9, 
+   3.708857987509205*^9}, {3.708858063062378*^9, 3.7088581855241632`*^9}, 
+   3.708858782000455*^9, {3.7088601323862953`*^9, 3.7088601327606983`*^9}, {
+   3.7088601693429327`*^9, 3.708860169888936*^9}, {3.709637369497236*^9, 
+   3.709637449367804*^9}, {3.7096386113292646`*^9, 3.7096386117442884`*^9}, {
+   3.7096387855682306`*^9, 3.709638786894306*^9}, {3.7101593131822815`*^9, 
+   3.710159318370578*^9}, {3.757574525957207*^9, 3.7575745369241*^9}, {
+   3.7575748274776077`*^9, 3.757574829044381*^9}, {3.757579789064872*^9, 
+   3.7575797894143095`*^9}, {3.7581887702068896`*^9, 
+   3.7581887742910275`*^9}, {3.8227024705612917`*^9, 3.8227024739223976`*^9}},
+ Background->RGBColor[1, 0.9, 0.8],
+ CellLabel->"In[18]:=",ExpressionUUID->"f8985b29-727b-46d6-b672-16300eac39bd"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Deriving the EOM ", "Subsection",
+ CellChangeTimes->{{3.822714787060532*^9, 3.8227147922773247`*^9}, {
+  3.8227332378610325`*^9, 
+  3.8227332417445183`*^9}},ExpressionUUID->"dc393227-e0eb-4c95-aade-\
+20c95f42090e"],
+
+Cell["\<\
+Here I would suggest first defining the x and y coordinates of the pendulum\
+\[CloseCurlyQuote] s mass as functions of time, in terms of the (undefined) \
+function \[Theta][t]. From this you can define the Lagrange function L as an \
+expression. Using this, derive the equation of motion (remember to use == and \
+not just = here) and assign this to a variable called OEM. Having a ClearAll \
+for the symbols you use in these definitions at the top of the cell will be \
+useful.\
+\>", "Text",
+ CellChangeTimes->{{3.822724168494115*^9, 3.8227241806110067`*^9}, {
+  3.8227313607446756`*^9, 3.822731363882144*^9}, {3.8237459869759274`*^9, 
+  3.8237459911875706`*^9}, {3.8238485927449074`*^9, 3.823848595289234*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"fbbe1211-c92e-4f42-9162-ceb26c6ae5fa"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"d", "[", "t_", "]"}], " ", ":=", " ", 
+  RowBox[{"a", " ", "*", " ", 
+   RowBox[{"Sin", "[", "t", "]"}], " "}]}]], "Input",
+ CellChangeTimes->{{3.8533003163354025`*^9, 3.8533003190529532`*^9}, {
+   3.8533003769352164`*^9, 3.8533004010237665`*^9}, {3.8533004861887255`*^9, 
+   3.8533005082793283`*^9}, {3.8533009008506517`*^9, 3.8533009016871157`*^9}, 
+   3.853300982513085*^9},
+ CellLabel->"In[17]:=",ExpressionUUID->"33e78ed1-5b2b-4751-bb1f-717e71868685"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"x", "[", "t_", "]"}], " ", ":=", " ", 
+  RowBox[{"Cos", "[", 
+   RowBox[{"\[Theta]", "[", "t", "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.8533006253501935`*^9, 3.8533006709911757`*^9}, {
+   3.8533007050035577`*^9, 3.8533007249040003`*^9}, {3.8533007643491535`*^9, 
+   3.8533007970626545`*^9}, {3.853300831119627*^9, 3.853300854894799*^9}, 
+   3.853300987081641*^9},ExpressionUUID->"61501e1d-d2a6-4900-a6e9-\
+3c916b137c1f"],
+
+Cell[BoxData[
+ RowBox[{"Cos", "[", 
+  RowBox[{"\[Theta]", "[", "t", "]"}], "]"}]], "Output",
+ CellChangeTimes->{3.853300814820713*^9, 3.8533009155612955`*^9},
+ CellLabel->"Out[8]=",ExpressionUUID->"83d1b553-1ec8-4302-8862-ff55121a8c66"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"y", "[", "t_", "]"}], " ", ":=", " ", 
+  RowBox[{
+   RowBox[{"Sin", "[", 
+    RowBox[{"\[Theta]", "[", "t", "]"}], "]"}], " ", "+", " ", 
+   RowBox[{"d", "[", "t", "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.853300818608111*^9, 3.85330082509543*^9}, {
+   3.8533008608959928`*^9, 3.8533008767577696`*^9}, 3.8533009909930186`*^9},
+ CellLabel->"In[16]:=",ExpressionUUID->"c7ee3ac8-a27c-457a-9506-3b5870d1ae07"],
+
+Cell[BoxData[
+ RowBox[{"\n", 
+  RowBox[{
+   RowBox[{"K", " ", "[", 
+    RowBox[{"t_", ",", " ", "m_"}], "]"}], ":=", " ", 
+   RowBox[{
+    RowBox[{"1", "/", "2"}], " ", "*", " ", "m", " ", "*", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"x", "'"}], "[", "t", "]"}], ")"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.8533009250416408`*^9, 3.853301018195855*^9}, {
+  3.853301053320255*^9, 3.8533010790592856`*^9}},
+ CellLabel->"In[15]:=",ExpressionUUID->"a4ed325d-1746-49bf-9f21-df1f4e2dcb65"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Drawing the pendulum", "Subsection",
+ CellChangeTimes->{{3.822714787060532*^9, 3.8227147922773247`*^9}, {
+   3.822715321277175*^9, 3.822715322810814*^9}, {3.8227153795612288`*^9, 
+   3.8227153825109205`*^9}, 
+   3.8227314658606544`*^9},ExpressionUUID->"fde7a826-529c-4c67-afb0-\
+3a90e711ec4b"],
+
+Cell["\<\
+Write a function which draws the pendulum for given values of \[Theta], d and \
+l. You can use Graphics for this. You just provide it with a list of objects \
+to draw together with properties (Black, Red, Thick, Thin...). After that you \
+can tune the plot range and aspect ratio. See the example below.\
+\>", "Text",
+ CellChangeTimes->{{3.8227249200778*^9, 3.822724931527853*^9}, {
+  3.8227314748109903`*^9, 3.8227315009609327`*^9}, {3.8238486061883802`*^9, 
+  3.8238486306195755`*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"dea78d74-0062-435a-a216-2f26d79cf5df"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"drawfigure", "[", "t_", "]"}], ":=", 
+   RowBox[{"Graphics", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"Orange", ",", 
+       RowBox[{"Disk", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"0", ",", "0"}], "}"}], ",", "1"}], "]"}], ",", "Black", 
+       ",", "Thin", ",", 
+       RowBox[{"Circle", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"0", ",", "0"}], "}"}], ",", "4"}], "]"}], ",", "Blue", ",", 
+       RowBox[{"Disk", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"4", " ", 
+            RowBox[{"Cos", "[", "t", "]"}]}], ",", 
+           RowBox[{"4", " ", 
+            RowBox[{"Sin", "[", "t", "]"}]}]}], "}"}], ",", 
+         RowBox[{"1", "/", "3"}]}], "]"}], ",", "Thin", ",", "Black", ",", 
+       RowBox[{"Circle", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"4", " ", 
+            RowBox[{"Cos", "[", "t", "]"}]}], ",", 
+           RowBox[{"4", " ", 
+            RowBox[{"Sin", "[", "t", "]"}]}]}], "}"}], ",", "0.75"}], "]"}], 
+       ",", "Gray", ",", 
+       RowBox[{"Disk", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"4", " ", 
+             RowBox[{"Cos", "[", "t", "]"}]}], ",", 
+            RowBox[{"4", " ", 
+             RowBox[{"Sin", "[", "t", "]"}]}]}], "}"}], "+", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Cos", "[", 
+              RowBox[{"12", " ", "t"}], "]"}], ",", 
+             RowBox[{"Sin", "[", 
+              RowBox[{"12", "t"}], "]"}]}], "}"}], " ", "0.75"}]}], ",", 
+         RowBox[{"1", "/", "9"}]}], "]"}]}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "5"}], ",", "5"}], "}"}]}], "}"}]}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "250"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.8227170209986506`*^9, 3.8227170842105722`*^9}, {
+  3.822717205843956*^9, 3.822717319191863*^9}, {3.8227174913777018`*^9, 
+  3.822717514677765*^9}, {3.822717680844595*^9, 3.822717680894009*^9}, {
+  3.8227198361274853`*^9, 3.8227200049781647`*^9}, {3.8227293678780565`*^9, 
+  3.8227293791945953`*^9}},
+ CellLabel->
+  "In[787]:=",ExpressionUUID->"60bde6b9-2337-432d-8f80-c833cb86f544"],
+
+Cell[BoxData[
+ RowBox[{"drawfigure", "[", "3", "]"}]], "Input",
+ CellChangeTimes->{3.8227200252940955`*^9},
+ CellLabel->
+  "In[788]:=",ExpressionUUID->"3a9f9476-5f0f-4c0b-b67e-5558d0841f6e"],
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"drawfigure", "[", "t", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", 
+     RowBox[{"2", "\[Pi]"}], ",", "0.005", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Open\>\""}], ",", 
+     RowBox[{"AnimationRate", "\[Rule]", "80"}], ",", 
+     RowBox[{"AnimationRunning", "->", "True"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.822717467327943*^9, 3.8227174822129583`*^9}, 
+   3.8227175282613773`*^9, {3.822717620360791*^9, 3.8227176638773375`*^9}, {
+   3.822719984244361*^9, 3.8227199849206696`*^9}, {3.822726502828105*^9, 
+   3.82272651581124*^9}},
+ CellLabel->
+  "In[789]:=",ExpressionUUID->"68f8ac77-5f28-4297-81ca-f39b44a0ad88"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Solving the EOM and  visualising the solution", "Subsection",
+ CellChangeTimes->{{3.822714787060532*^9, 3.8227147922773247`*^9}, {
+   3.822715321277175*^9, 3.822715322810814*^9}, {3.8227153795612288`*^9, 
+   3.8227153825109205`*^9}, {3.8227184322647333`*^9, 3.822718445210786*^9}, {
+   3.8227184769107437`*^9, 3.8227184808607664`*^9}, {3.8227185641327176`*^9, 
+   3.822718571660575*^9}, 
+   3.8227186950778675`*^9},ExpressionUUID->"16fdab35-2393-484c-ae86-\
+ac6ac77bdad6"],
+
+Cell["\<\
+Write code which assigns numeric values to a, \[Omega] and \
+\[Theta]0=\[Theta](0). Combine this with the code below for solving the EOM, \
+with the pendulum starting from rest. This will assign the solution of the \
+EOM to a function \[Theta]. You can plot \[Theta] as a function of time, and \
+also use it to produce an animation of the pendulum when combined with the \
+function you defined above. You can put the two plots next to each other \
+using Row.\
+\>", "Text",
+ CellChangeTimes->{{3.822724993727871*^9, 3.822725040994005*^9}, {
+  3.822726135077783*^9, 3.822726144844759*^9}, {3.822726200763838*^9, 
+  3.822726207111323*^9}, {3.8227315533609657`*^9, 3.822731571544242*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"60b747ce-d713-400a-8899-b22d34cbf152"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ClearAll", "[", 
+   RowBox[{"t", ",", "\[Theta]", ",", "Derivative"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"NDSolve", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"EOM", ",", 
+      RowBox[{
+       RowBox[{"\[Theta]", "[", "0", "]"}], "\[Equal]", "\[Theta]0"}], ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"\[Theta]", "'"}], "[", "0", "]"}], "\[Equal]", "0"}]}], 
+     "}"}], ",", "\[Theta]", ",", 
+    RowBox[{"{", 
+     RowBox[{"t", ",", "0", ",", "500"}], "}"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[Theta]", "=", 
+   RowBox[{"\[Theta]", "/.", 
+    RowBox[{"%", "[", 
+     RowBox[{"[", "1", "]"}], "]"}]}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.8227200615607977`*^9, 3.8227200997942433`*^9}, 
+   3.82272084579436*^9, {3.8227208762442355`*^9, 3.8227209257108765`*^9}, {
+   3.8227218715105824`*^9, 3.8227218718438497`*^9}, {3.8227219729776278`*^9, 
+   3.8227219784105453`*^9}, {3.8227220093274283`*^9, 
+   3.8227220595279584`*^9}, {3.822726148926904*^9, 3.8227261800609007`*^9}, {
+   3.822734493294451*^9, 3.8227345021448154`*^9}},
+ CellLabel->
+  "In[2052]:=",ExpressionUUID->"740b27c4-237b-47f4-be02-6b17288fd6eb"],
+
+Cell["\<\
+Depending on the values of a and \[Omega] the pendulum can exhibit a wide \
+range of different behaviours. When a is not much smaller than l=1 the motion \
+can be quite chaotic. Here we will take a=0.1. If your code above works then \
+you can just copy and paste the cell and adjust the values of the parameters \
+for the questions below. For this purpose using something like \
+ParametricNDSolve would be better, but this function apparently contains some \
+exciting bugs, so we will stick to a less elegant but more reliable approach \
+here.\
+\>", "Text",
+ CellChangeTimes->{{3.8227256683611503`*^9, 3.822725701185398*^9}, {
+  3.822732092711444*^9, 3.8227321277947817`*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"3eca8ff1-76df-491b-a18e-c882c153cd38"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Slow driving", "Subsection",
+ CellChangeTimes->{{3.822714787060532*^9, 3.8227147922773247`*^9}, {
+   3.822715321277175*^9, 3.822715322810814*^9}, {3.8227153795612288`*^9, 
+   3.8227153825109205`*^9}, {3.8227184322647333`*^9, 3.822718445210786*^9}, {
+   3.8227184769107437`*^9, 3.8227184808607664`*^9}, {3.8227185641327176`*^9, 
+   3.822718571660575*^9}, 3.8227186950778675`*^9, {3.822720205661066*^9, 
+   3.8227202080206375`*^9}, 
+   3.822733249944567*^9},ExpressionUUID->"ec10458b-2139-49f2-82d1-\
+b3df1625b0fd"],
+
+Cell[TextData[{
+ "Take \[Omega]=3 here and start the pendulum close to the top, say at ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"175", "\[Degree]"}], TraditionalForm]],ExpressionUUID->
+  "a204febc-919d-46b5-a888-e28566c39b8a"],
+ ". Here you can already get an idea of how complicated the motion can be, \
+with periods of back-and-forth swinging, and swinging around clockwise or \
+anti-clockwise all being present in the dynamics."
+}], "Text",
+ CellChangeTimes->{{3.822725750022665*^9, 3.822725804927785*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"aafa34b4-e459-4e81-b739-712ae0d2d8df"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Fast driving", "Subsection",
+ CellChangeTimes->{{3.822714787060532*^9, 3.8227147922773247`*^9}, {
+   3.822715321277175*^9, 3.822715322810814*^9}, {3.8227153795612288`*^9, 
+   3.8227153825109205`*^9}, {3.8227184322647333`*^9, 3.822718445210786*^9}, {
+   3.8227184769107437`*^9, 3.8227184808607664`*^9}, {3.8227185641327176`*^9, 
+   3.822718571660575*^9}, 3.8227186950778675`*^9, {3.822720205661066*^9, 
+   3.8227202080206375`*^9}, {3.82272631412719*^9, 3.822726314677578*^9}, 
+   3.8227332516943884`*^9},ExpressionUUID->"19560855-81f3-48ae-bc9b-\
+81d99687270a"],
+
+Cell[TextData[{
+ "A careful analysis of the EOM shows that once ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"(", "a\[Omega]", ")"}], "/", 
+    RowBox[{"(", 
+     SubscriptBox["l\[Omega]", "0"]}]}], TraditionalForm]],ExpressionUUID->
+  "f2d7a01f-59e2-4378-9cd9-f024a94ef952"],
+ ")>Sqrt[2] the pendulum\[CloseCurlyQuote]s top position at \[Theta]=180\
+\[Degree] becomes a stable equilibrium point. (This is still for the case \
+where a<<l=1.) Starting out the pendulum close to this point should therefore \
+lead to stable oscillations around it, provided that the driving is \
+sufficiently fast. Produce an example of this."
+}], "Text",
+ CellChangeTimes->{{3.822725750022665*^9, 3.822725804927785*^9}, {
+  3.822726317577381*^9, 3.8227264435112696`*^9}, {3.822727500244283*^9, 
+  3.8227275520312376`*^9}, {3.822732228527893*^9, 3.822732229127516*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"e080b3cd-fba2-4d05-b8ec-b06e82c62770"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1428., 735.75},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+AutoIndent->False,
+Magnification:>1.3 Inherited,
+FrontEndVersion->"13.0 for Microsoft Windows (64-bit) (December 2, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"5899b637-eef1-4522-9816-5707965015b6"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 166, 3, 126, "Title",ExpressionUUID->"62060b8a-9db2-4dbb-9f0c-c916160fdeb9"],
+Cell[CellGroupData[{
+Cell[771, 29, 213, 4, 70, "Subsection",ExpressionUUID->"f87661af-dabb-4124-94bb-cc360983fa3e"],
+Cell[987, 35, 761, 17, 126, "Text",ExpressionUUID->"fbecdd27-c157-4eb8-b332-4bdbb6450211"],
+Cell[1751, 54, 1365, 26, 156, "Text",ExpressionUUID->"8f4e3e59-9887-43b7-9a42-c3ec4163d5c8"],
+Cell[3119, 82, 2097, 34, 57, "Input",ExpressionUUID->"f8985b29-727b-46d6-b672-16300eac39bd"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5253, 121, 220, 4, 70, "Subsection",ExpressionUUID->"dc393227-e0eb-4c95-aade-20c95f42090e"],
+Cell[5476, 127, 818, 13, 126, "Text",ExpressionUUID->"fbbe1211-c92e-4f42-9162-ceb26c6ae5fa"],
+Cell[6297, 142, 491, 9, 36, "Input",ExpressionUUID->"33e78ed1-5b2b-4751-bb1f-717e71868685"],
+Cell[CellGroupData[{
+Cell[6813, 155, 462, 9, 36, InheritFromParent,ExpressionUUID->"61501e1d-d2a6-4900-a6e9-3c916b137c1f"],
+Cell[7278, 166, 236, 4, 41, "Output",ExpressionUUID->"83d1b553-1ec8-4302-8862-ff55121a8c66"]
+}, Open  ]],
+Cell[7529, 173, 441, 9, 36, "Input",ExpressionUUID->"c7ee3ac8-a27c-457a-9506-3b5870d1ae07"],
+Cell[7973, 184, 490, 12, 62, "Input",ExpressionUUID->"a4ed325d-1746-49bf-9f21-df1f4e2dcb65"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8500, 201, 299, 5, 70, "Subsection",ExpressionUUID->"fde7a826-529c-4c67-afb0-3a90e711ec4b"],
+Cell[8802, 208, 593, 10, 96, "Text",ExpressionUUID->"dea78d74-0062-435a-a216-2f26d79cf5df"],
+Cell[9398, 220, 2497, 68, 87, "Input",ExpressionUUID->"60bde6b9-2337-432d-8f80-c833cb86f544"],
+Cell[11898, 290, 190, 4, 36, "Input",ExpressionUUID->"3a9f9476-5f0f-4c0b-b67e-5558d0841f6e"],
+Cell[12091, 296, 722, 15, 36, "Input",ExpressionUUID->"68f8ac77-5f28-4297-81ca-f39b44a0ad88"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12850, 316, 478, 7, 70, "Subsection",ExpressionUUID->"16fdab35-2393-484c-ae86-ac6ac77bdad6"],
+Cell[13331, 325, 790, 13, 126, "Text",ExpressionUUID->"60b747ce-d713-400a-8899-b22d34cbf152"],
+Cell[14124, 340, 1223, 31, 87, "Input",ExpressionUUID->"740b27c4-237b-47f4-be02-6b17288fd6eb"],
+Cell[15350, 373, 782, 13, 156, "Text",ExpressionUUID->"3eca8ff1-76df-491b-a18e-c882c153cd38"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16169, 391, 519, 8, 70, "Subsection",ExpressionUUID->"ec10458b-2139-49f2-82d1-b3df1625b0fd"],
+Cell[16691, 401, 604, 12, 93, "Text",ExpressionUUID->"aafa34b4-e459-4e81-b739-712ae0d2d8df"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17332, 418, 566, 8, 69, "Subsection",ExpressionUUID->"19560855-81f3-48ae-bc9b-81d99687270a"],
+Cell[17901, 428, 954, 19, 93, "Text",ExpressionUUID->"e080b3cd-fba2-4d05-b8ec-b06e82c62770"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
