@@ -15,6 +15,7 @@
 \usepackage{booktabs}
 \usepackage{newpxtext}
 \usepackage{unicode-math}
+\usepackage{braket}
 \setmathfont{Libertinus Math}
 
 \usetikzlibrary{decorations.pathreplacing,decorations.markings}
@@ -41,81 +42,24 @@
 \settowidth{\QLetter}{(a)}
 
 \pagestyle{fancy}
-\rhead{Solid State Physics Problem Set}
+\rhead{Quantum mechanics Problem Set}
 \lhead{J. L. Gouws}
 
 
 \begin{document}
 \fontencoding{T1}
 \fontfamily{ppl}\selectfont
-{\Large \textbf{Solid State Physics Assignment 1}} \hfill {\Large \textbf{J L Gouws}}\\
-\block{1.0cm} {\large \textbf{\today}} \hfill {\large \textbf{19G4436}}\\
+{\Large \textbf{Quantum mechanics Assignment 1}} \hfill {\Large \textbf{J L Gouws}}\\
+\block{1.0cm} {\large \textbf{\today}} \hfill {\large \textbf{26634554}}\\
 \thispagestyle{empty}
 \fontencoding{T1}
 
 1.
 \begin{minipage}[t]{0.9\textwidth}
-  a).
-  \begin{minipage}[t]{\textwidth}
-    For a given plane $[hkl]$, we can see that the plane intersects the basis vectors at \footnotemark:\\
-    \begin{equation*}
-      \frac{1}{h} \af \qquad \frac{1}{k} \as \qquad \frac{1}{l} \at
-    \end{equation*}
-    These might not be defined if $h$, $k$, or $l$ is equal to zero, but we will deal with that difficulty later.
-    It follows that the vectors:
-    \begin{equation*}
-      \vect{ u'} = \frac{1}{h} \af - \frac{1}{k} \as \qquad \vect{v'} = \frac{1}{h} \af - \frac{1}{l} \at \qquad  \vect{w'} = \frac{1}{k} \as - \frac{1}{l} \at
-    \end{equation*}
-    are parallel to the plane, in fact they completely determine the orientation of the plane.
-    Since we are only interested in the orientation of the plane, we can multiply each of the vectors by a scalar, which does not change the direction of the vectors.
-    We define:
-    \begin{equation*}
-      \vect{u} \defeq hk \vect{u'} = k \af - h \as \qquad \vect{v} \defeq hk \vect{u'}= l \af - h \at \qquad  \vect{w} \defeq hk \vect{u'} = l \as - k \at
-    \end{equation*}
-    And we no longer have to worry about infinite vectors.
-    Since these vectors span the plane and determine its orientation, we can see if they are perpendicular to $\pmb{G}$
-    \begin{gather*}
-      \pmb{G} \dprod \pmb{u} = (h \uv{b_1} + k \uv{b_2} + l \uv{b_3})\dprod (k \af - h \as)
-                             = 2 \pi hk - 2 \pi kh
-                             = 0\\
-      \pmb{G} \dprod \pmb{v} = (h \uv{b_1} + k \uv{b_2} + l \uv{b_3})\dprod (l \af - h \at)
-                             = 2 \pi hl - 2 \pi lh
-                             = 0\\
-      \pmb{G} \dprod \pmb{v} = (h \uv{b_1} + k \uv{b_2} + l \uv{b_3})\dprod (l \as - k \at)
-                             = 2 \pi hk - 2 \pi kl
-                             = 0
-    \end{gather*}
-    Since $\uv{b_i} \dprod \uv{aj} = 2 \pi \delta{ij}$.
-    Hence $\pmb{G}$ is perpendiular to any vector parallel to the plane, as required.\\
-  \end{minipage}
-
-  b)
-  \begin{minipage}[t]{\textwidth}
-    The plane must intercept at least one of the axes.
-    Without loss of generality, we can choose it to intercept the $\af$ axis, thus $\frac{1}{h} \af$ is a point on the plane, and:
-    \begin{equation*}
-      \pmb{G} \dprod \left(\frac{1}{h}\af\right) = h \frac{1}{h} \af \cdot \uv{b_1} = 2 \pi
-    \end{equation*}
-    Thus, since $\pmb{G}$ is normal to the plane, an equation that describes the plane is:
-    \begin{equation}
-      \pmb{G} \dprod \pmb{p} = 2 \pi
-      \label{eq:plane}
-    \end{equation} 
-    Where $\pmb{p}$ is an arbitrary point on the plane.
-    If $\pmb{d}$ is a vector that is parallel to $\pmb{G}$, and $\pmb{d}$ takes the origin onto a point of the plane, then $\norm{\pmb{d}}$ is the interplanar distance.
-    The geometry is shown in Fig.~\ref{fig:planeSep}, where the dashed line represents the planes. 
-    It follows from Eq.~\ref{eq:plane}, that:
-    \begin{align*}
-                 & \pmb{G} \dprod \pmb{d} = 2 \pi\\
-      \Rightarrow & \norm{\pmb{G}} \norm{\pmb{d}} \cos \theta = 2 \pi\\
-      \Rightarrow & \norm{\pmb{G}} \norm{\pmb{d}} = 2 \pi\\
-      \Rightarrow & \norm{\pmb{d}} = \frac{2 \pi}{\norm{\pmb{G}}}
-    \end{align*}
-    Since the angle between the vectors, $\theta = 0$.
-    This is the desired result.
-  \end{minipage}
+  \begin{align*}
+    \left(\bra{\psi} + \alpha* \bra{\phi}\right)\left(\alpha \ket{\phi} + \ket{\psi}\right)
+  \end{align*}
 \end{minipage}
-\footnotetext{ $\ $Note I am using the hat symbol to mean basis vectors in a given vector space, not unit vectors.}
 $\phantom{1.}$
 \begin{minipage}[t]{0.9\textwidth}
   c).
