@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.12.0 (TeX Live 2020/Debian)  (format=lualatex 2022.2.15)  16 FEB 2022 16:56
+This is LuaHBTeX, Version 1.12.0 (TeX Live 2020/Debian)  (format=lualatex 2022.2.15)  17 FEB 2022 12:53
  restricted system commands enabled.
 **JLGouws26634554QM1.tex
 (./JLGouws26634554QM1.tex
@@ -1166,32 +1166,32 @@ corations.softclip.code.tex))
 \QNo=\skip78
 \QLetter=\skip79
 LaTeX Font Info:    Trying to load font information for TU+zpltlf on input line 
-49.
-LaTeX Font Info:    No file TUzpltlf.fd. on input line 49.
+50.
+LaTeX Font Info:    No file TUzpltlf.fd. on input line 50.
 
 
 LaTeX Font Warning: Font shape `TU/zpltlf/m/n' undefined
-(Font)              using `TU/lmr/m/n' instead on input line 49.
+(Font)              using `TU/lmr/m/n' instead on input line 50.
 
 (./JLGouws26634554QM1.aux)
 \openout1 = JLGouws26634554QM1.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1217,15 +1217,15 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 \symgns@font=\mathgroup7
 LaTeX Font Info:    Overwriting symbol font `gns@font' in version `bold'
-(Font)                  TS1/zpltlf/m/n --> TS1/zpltlf/b/n on input line 49.
-Package gensymb Info: Math companion symbols declared on input line 49.
-LaTeX Info: Redefining \degree on input line 49.
-LaTeX Info: Redefining \celsius on input line 49.
+(Font)                  TS1/zpltlf/m/n --> TS1/zpltlf/b/n on input line 50.
+Package gensymb Info: Math companion symbols declared on input line 50.
+LaTeX Info: Redefining \degree on input line 50.
+LaTeX Info: Redefining \celsius on input line 50.
 Package gensymb Info: Using text companion symbols for \degree, \celsius and \pe
-rthousand on input line 49.
-LaTeX Info: Redefining \ohm on input line 49.
-Package gensymb Info: Using \textohm for \ohm on input line 49.
-Package gensymb Info: Using \textmu for \micro on input line 49.
+rthousand on input line 50.
+LaTeX Info: Redefining \ohm on input line 50.
+Package gensymb Info: Using \textohm for \ohm on input line 50.
+Package gensymb Info: Using \textmu for \micro on input line 50.
 
 (/usr/share/texlive/texmf-dist/tex/latex/siunitx/siunitx-abbreviations.cfg
 File: siunitx-abbreviations.cfg 2017/11/26 v2.7k siunitx: Abbreviated units
@@ -1278,19 +1278,19 @@ Package pgfplots notification 'compat/show suggested version=true': document has
 \c@mv@boldtabular=\count343
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
 (Font)                  TU/LibertinusMath(1)/m/n --> TU/zpltlf/m/n on input line
- 49.
+ 50.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/zpltlf/m/it on input line 49.
+(Font)                  OT1/cmr/m/it --> TU/zpltlf/m/it on input line 50.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/zpltlf/b/n on input line 49.
+(Font)                  OT1/cmr/bx/n --> TU/zpltlf/b/n on input line 50.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 49.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 50.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 49.
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 50.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 49.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 50.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 49.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 50.
 
 Package unicode-math Warning: Using \overbracket and \underbracket from
 (unicode-math)                `mathtools' package.
@@ -1310,60 +1310,58 @@ Package unicode-math Warning: I'm going to overwrite the following commands
 (unicode-math)                inconsistencies.
 
 LaTeX Font Info:    Trying to load font information for TS1+zpltlf on input line
- 49.
+ 50.
 (/usr/share/texlive/texmf-dist/tex/latex/newpx/ts1zpltlf.fd
 File: ts1zpltlf.fd 2015/01/18 v1.0 fd file for TS1/zpltlf
 )
 LaTeX Font Info:    Font shape `TS1/zpltlf/m/n' will be
-(Font)              scaled to size 12.0pt on input line 49.
+(Font)              scaled to size 12.0pt on input line 50.
 LaTeX Font Info:    Font shape `TS1/zpltlf/m/n' will be
-(Font)              scaled to size 9.6pt on input line 49.
+(Font)              scaled to size 9.6pt on input line 50.
 LaTeX Font Info:    Font shape `TS1/zpltlf/m/n' will be
-(Font)              scaled to size 7.2pt on input line 49.
-LaTeX Font Info:    Trying to load font information for T1+ppl on input line 51.
+(Font)              scaled to size 7.2pt on input line 50.
+LaTeX Font Info:    Trying to load font information for T1+ppl on input line 52.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ppl.fd
 File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 52--56
+Underfull \hbox (badness 10000) in paragraph at lines 53--57
 
  []
 
 
-Overfull \hbox (15.80386pt too wide) in paragraph at lines 65--87
-[]\T1/ppl/m/n/12 c). [] 
+Overfull \hbox (16.47594pt too wide) in paragraph at lines 131--155
+[]\T1/ppl/m/n/12 a). [] 
  []
 
+! Missing } inserted.
+<inserted text> 
+}
+l.162       A = \rbm{a & b \\ c & d}
+                                  
+? q
+OK, entering \batchmode...
+! Extra }, or forgotten $.
+\rbm #1->\left (\begin {matrix} {#1}
+                                     \end {matrix}\right )
+l.162       A = \rbm{a & b \\ c & d}
+                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
 
-Overfull \hbox (475.73532pt too wide) in paragraph at lines 57--102
-[]\T1/ppl/m/n/12 1. [] $[]$ []
+
+Overfull \hbox (17.11182pt too wide) in paragraph at lines 156--165
+[]\T1/ppl/m/n/12 b). [] 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 155--156
-
- []
+ [1
 
 
-Overfull \hbox (16.47594pt too wide) in paragraph at lines 142--195
-[]\T1/ppl/m/n/12 a). []
- []
-
-
-Overfull \hbox (17.11182pt too wide) in paragraph at lines 142--195
-\T1/ppl/m/n/12 b). [] 
- []
-
-
-Overfull \hbox (15.80386pt too wide) in paragraph at lines 196--209
-[]\T1/ppl/m/n/12 c). [] 
- []
-
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
-
-
-]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1371,29 +1369,29 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[2] (./JLGouws26634554QM1.aux)
+ [2] (./JLGouws26634554QM1.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 )
 
 Here is how much of LuaTeX's memory you used:
- 37552 strings out of 478824
+ 37114 strings out of 478824
  100000,1648299 words of node,token memory allocated
- 2518 words of node memory still in use:
-   7 hlist, 2 vlist, 2 rule, 2 glue, 6 kern, 272 sub_mlist, 1 glyph, 290 attribu
-te, 64 glue_spec, 290 attribute_list, 2 write nodes
-   avail lists: 2:1600,3:490,4:26,5:986,6:38,7:3988,8:125,9:2398,10:8,11:112
- 55976 multiletter control sequences out of 65536+600000
- 71 fonts using 13965063 bytes
- 98i,16n,116p,734b,2135s stack positions out of 5000i,500n,10000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libertinus
-Math-Regular.otf>{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</us
-r/share/texmf/fonts/opentype/public/lm/lmroman12-regular.otf></usr/share/texlive
-/texmf-dist/fonts/opentype/public/libertinus-fonts/LibertinusMath-Regular.otf></
+ 595 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 2 glue, 7 kern, 1 glyph, 12 attribute, 64 glue_spec
+, 12 attribute_list, 2 write nodes
+   avail lists: 2:776,3:103,4:11,5:203,6:28,7:2269,8:79,9:712,10:3,11:46
+ 55538 multiletter control sequences out of 65536+600000
+ 73 fonts using 14228571 bytes
+ 98i,13n,116p,734b,280s stack positions out of 5000i,500n,10000p,200000b,200000s
+</usr/share/texmf/fonts/opentype/public/lm/lmroman12-regular.otf></usr/share/tex
+live/texmf-dist/fonts/opentype/public/libertinus-fonts/LibertinusMath-Regular.ot
+f></usr/share/texlive/texmf-dist/fonts/opentype/public/libertinus-fonts/Libertin
+usMath-Regular.otf>{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</
 usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb>
-Output written on JLGouws26634554QM1.pdf (2 pages, 52655 bytes).
+Output written on JLGouws26634554QM1.pdf (2 pages, 46490 bytes).
 
 PDF statistics: 44 PDF objects out of 1000 (max. 8388607)
  28 compressed objects within 1 object stream

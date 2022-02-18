@@ -32,6 +32,7 @@
 \newcommand{\at}{\pmb{\hat a_3}}
 \newcommand\uv[1]{\pmb{\hat {#1}}}
 \newcommand\vect[1]{\pmb{{#1}}}
+\newcommand\rbm[1]{\left(\begin{matrix} {#1} \end{matrix}\right)}
 \newcommand\dprod{\pmb{\cdot}}
 	  
 \pgfplotsset{compat=newest}
@@ -57,35 +58,22 @@
 1.
 \begin{minipage}[t]{0.9\textwidth}
   \begin{align*}
-    \left(\bra{\psi} + \alpha* \bra{\phi}\right)\left(\alpha \ket{\phi} + \ket{\psi}\right)
+    \left(\bra{\psi} + \alpha^* \bra{\phi}\right)\left(\alpha \ket{\phi} + \ket{\psi}\right) &= \bra{\psi}\left(\alpha \ket{\phi} + \ket{\psi}\right) + \alpha^* \bra{\phi}\left(\alpha \ket{\phi} + \ket{\psi}\right)\\
+                                                                                             &= \alpha \braket{\psi|\phi} + \braket{\psi|\psi} + |\alpha|^2 \braket{\phi | \phi}+ \alpha^*\braket{\phi|\psi}\\
+                                                                                             & \geq 0\\
   \end{align*}
+  The above statement holds for all $\alpha$, and in particular $\alpha = i\frac{\braket{\psi|\phi}}{\braket{\phi | \phi}}$.
+  If we substitute this choice of $\alpha$ into the inequality above, we get:
+  \begin{align*}
+    \Rightarrow & i \frac{|\braket{\psi|\phi}|^2}{\braket{\phi|\phi}} + \braket{\psi|\psi} - |\braket{\psi|\phi}|^2\frac{\braket{\phi | \phi}}{|\braket{\phi | \phi}|^2} - i \frac{|\braket{\phi|\psi}|^2}{\braket{\phi|\phi}} \geq 0\\
+    \Rightarrow & \braket{\psi|\psi} - \frac{|\braket{\psi|\phi}|^2}{\braket{\phi | \phi}} \geq 0\\
+    \Rightarrow & \braket{\psi|\psi} \braket{\phi | \phi} \geq |\braket{\psi|\phi}|^2\\
+  \end{align*}
+  Which is the required result. 
 \end{minipage}
-$\phantom{1.}$
-\begin{minipage}[t]{0.9\textwidth}
-  c).
-  \begin{minipage}[t]{\textwidth}
-    The following vectors can be used as primitive translation vectors of a simple cubic lattice:
-    \begin{equation*}
-      \af = a \uv{x} \qquad \as = a \uv{y} \qquad \at = a \uv{z}
-    \end{equation*}
-    Which has the following reciprocal lattive basis vectors:
-    \begin{equation*}
-      \uv{b_1} = \frac{2 \pi}{a} \uv{x} \qquad \uv{b_2} = \frac{2 \pi}{a} \uv{y} \qquad \uv{b_3} =  \frac{2 \pi}{a}\uv{z}
-    \end{equation*}
-    Now for the plane $[hkl]$:
-    \begin{align*}
-                  & \pmb{G} = \frac{2 \pi h}{a} \uv{x} + \frac{2 \pi k}{a} \uv{y} + \frac{2 \pi l}{a} \uv{z}\\
-      \Rightarrow & \left| \pmb{G} \right| = \sqrt{4 \pi^2 \frac{h^2 + k^2 + l^2}{a^2}}\\
-      \Rightarrow & \left| \pmb{G} \right| = \frac{2 \pi}{a} \sqrt{h^2 + k^2 + l^2}
-    \end{align*}
-    Hence using the fromula for interplanar separation:
-    \begin{align*}
-                      & d_{hkl} = \frac{2 \pi}{\frac{2 \pi}{a} \sqrt{h^2 + k^2 + l^2}}\\
-      \Leftrightarrow & d^2_{hkl} = \frac{a^2}{h^2 + k^2 + l^2}
-    \end{align*}
-  \end{minipage}
-\end{minipage}
-  \begin{figure}
+
+\iffalse
+\begin{figure}
   \centering
   \begin{tikzpicture}
     \draw[->] (0, 0) -- (4.5, 0) node[anchor = south west] {$x$};
@@ -136,75 +124,44 @@ $\phantom{1.}$
   \caption{The first Brillouin zone of a hexagonal lattice}
   \label{fig:firsBrillouin}
 \end{figure}
+\fi
 
 2.
 \begin{minipage}[t]{0.9\textwidth}
   a).
   \begin{minipage}[t]{\textwidth}
-    The volume of the primitive cell is given by:
+    Let $\left(\begin{matrix} a & b \\ c & d\end{matrix}\right)$ be a general matrix over $\mathbb{C}$.\\
+    Then we need to find $\alpha, \beta, \gamma, \delta \in \mathbb{C}$, such that:
     \begin{equation*}
-      V = \af \dprod (\as \times \at)
+      \left(\begin{matrix} a & b \\ c & d\end{matrix}\right) = \alpha \left(\begin{matrix}1 & 0 \\ 0 & 1\end{matrix}\right)
+        + \beta \left(\begin{matrix}0 & 1 \\ 1 & 0\end{matrix}\right) + \gamma \left(\begin{matrix}0 & -i \\ i & 0\end{matrix}\right) + \delta\left(\begin{matrix}1 & 0 \\ 0 & -1\end{matrix}\right)
     \end{equation*}
-    We have:
-    \begin{equation*}
-      \as \times \at = - \sqrt{3}\frac{ac}{2} (- \uv{y}) + \frac{ac}{2} \uv{x} = \sqrt{3}\frac{ac}{2} \uv{y} + \frac{ac}{2} \uv{x}
-    \end{equation*}
-    Thus:
-    \begin{equation*}
-      V = \frac{\sqrt{3} a^2c}{4} + \frac{\sqrt{3} a^2c}{4} = \sqrt{3} \frac{a^2c}{2}
-    \end{equation*}\\
+    For this we have:
+    \begin{align*}
+      a &= \alpha + \delta\\
+      b &= \beta + -i\gamma\\
+      c &= \beta  + i\gamma\\
+      d &= \alpha - \delta
+    \end{align*}
+    This system of equations is partially decoupled, and so is easily solved.
+    \begin{align*}
+      \alpha  &= \frac{a + d}{2}\\
+      \beta &= \frac{b + c}{2}\\
+      \gamma &= i\frac{b - c}{2}\\
+      \delta &= \frac{a - d}{2} 
+    \end{align*}
+    Since $a, b, c, d$ are in $\mathbb{C}$ and $\mathbb{C}$ is a field, $\alpha, \beta, \gamma, \delta$ are definitely in $\mathbb{C}$ as required.
   \end{minipage}
+
   b).
   \begin{minipage}[t]{\textwidth}
-    We have by the definition of the reciprocal lattice vectors:
+    $\trace\left({A^\dagger B}\right)$ is an inner product:
+    First, $\left(A, B\right) = \trace\left(A^\dagger B\right)$, is indeed a map $\mathbb{C}^{2\times 2}\times \mathbb{C}^{2\times 2} \to \mathbb{C}$.\\
+    Let:
     \begin{equation*}
-      \uv{b_1} = 2 \pi \frac{\as \times \at}{V} = \frac{2 \pi}{V}
-      \left|
-      \begin{matrix}
-        \uv{x} & \uv{y} & \uv{z}\\
-        -\frac{\sqrt{3}a}{2} & \frac{a}{2} & 0\\
-        0 & 0 & c
-      \end{matrix}
-      \right|
-      = \frac{2 \pi}{\sqrt{3}ac} \uv{x} + \frac{2\pi}{a}\uv{y}
-    \end{equation*}
-    \begin{equation*}
-      \uv{b_2} = 2 \pi \frac{\at \times \af}{V} = \frac{2 \pi}{V}
-      \left|
-      \begin{matrix}
-        \uv{x} & \uv{y} & \uv{z}\\
-        0 & 0 & c\\
-        \frac{\sqrt{3}a}{2} & \frac{a}{2} & 0
-      \end{matrix}
-      \right|
-      =  - \frac{2 \pi}{\sqrt{3}ac} \uv{x} + \frac{2\pi}{a}\uv{y}
-    \end{equation*}
-    \begin{equation*}
-      \uv{b_3} = 2 \pi \frac{\af \times \as}{V} = \frac{2 \pi}{V}
-      \left|
-      \begin{matrix}
-        \uv{x} & \uv{y} & \uv{z}\\
-         \frac{\sqrt{3}a}{2} & \frac{a}{2} & 0\\
-        -\frac{\sqrt{3}a}{2} & \frac{a}{2} & 0
-      \end{matrix}
-      \right|
-      = \frac{2 \pi}{V}\frac{\sqrt{3}a^2 - (-\sqrt{3}a^2)}{2}
-      = \frac{2 \pi}{c} \uv{z}
+      A = \rbm{a & b \\ c & d}
     \end{equation*}
   \end{minipage}
 
-  c).
-  \begin{minipage}[t]{\textwidth}
-    The first Brillouin zone is described by the planes that bisect the following vectors perpendicularly:
-    \begin{gather*}
-      \frac{2 \pi}{\sqrt{3}ac} \uv{x} + \frac{2\pi}{a}\uv{y}\\
-      - \frac{2 \pi}{\sqrt{3}ac} \uv{x} - \frac{2\pi}{a}\uv{y}\\
-      -\frac{2 \pi}{\sqrt{3}ac} \uv{x} + \frac{2\pi}{a}\uv{y}\\
-      \frac{2 \pi}{\sqrt{3}ac} \uv{x} - \frac{2\pi}{a}\uv{y}\\
-      \pm \frac{2 \pi}{c} \uv{z}\\
-    \end{gather*}
-    This can be seen in Fig.~\ref{fig:firsBrillouin},
-    it is a rhombic prism.
-  \end{minipage}
 \end{minipage}
 \end{document}
