@@ -16,6 +16,7 @@
 \usepackage{newpxtext}
 \usepackage{unicode-math}
 \usepackage{braket}
+\usepackage{tensor}
 \setmathfont{Libertinus Math}
 
 \usetikzlibrary{decorations.pathreplacing,decorations.markings}
@@ -32,8 +33,14 @@
 \newcommand{\at}{\pmb{\hat a_3}}
 \newcommand\uv[1]{\pmb{\hat {#1}}}
 \newcommand\vect[1]{\pmb{{#1}}}
-\newcommand\rbm[1]{\left(\begin{matrix} {#1} \end{matrix}\right)}
 \newcommand\dprod{\pmb{\cdot}}
+
+\usepackage{tabstackengine}
+\setstackEOL{;}% row separator
+\setstackTAB{,}% column separator
+\setstacktabbedgap{1ex}% inter-column gap
+\setstackgap{L}{1.0\normalbaselineskip}% inter-row baselineskip
+\newcommand\rbm[1]{\left(\Matrixstack{#1}\right)}
 	  
 \pgfplotsset{compat=newest}
 \newlength{\QNo}
@@ -152,16 +159,113 @@
     \end{align*}
     Since $a, b, c, d$ are in $\mathbb{C}$ and $\mathbb{C}$ is a field, $\alpha, \beta, \gamma, \delta$ are definitely in $\mathbb{C}$ as required.
   \end{minipage}
+\end{minipage}
 
+\begin{minipage}[t]{\textwidth}
   b).
   \begin{minipage}[t]{\textwidth}
     $\trace\left({A^\dagger B}\right)$ is an inner product:
     First, $\left(A, B\right) = \trace\left(A^\dagger B\right)$, is indeed a map $\mathbb{C}^{2\times 2}\times \mathbb{C}^{2\times 2} \to \mathbb{C}$.\\
     Let:
     \begin{equation*}
-      A = \rbm{a & b \\ c & d}
+      A = \rbm{a_{11}, a_{12}; a_{21}, a_{22}} \qquad \qquad B = \rbm{b_{11}, b_{12}; b_{21}, b_{22}} \qquad  \qquad C = \rbm{c_{11}, c_{12}; c_{21}, c_{22}}
     \end{equation*}
+    Note:
+    \begin{align*}
+      \left( A, B \right) &= \trace\left\{\rbm{a_{11}^*, a_{21}^*; a_{12}^*, a_{22}^*} \rbm{b_{11}, b_{12}; b_{21}, b_{22}}\right\}\\
+      & = \trace\left\{\rbm{a_{11}^*b_{11} + a_{21}^* b_{21}, a_{11}^*b_{12} + a_{21}^*b_{22}; a_{12}^*b_{11} + a_{22}^*b_{21}, a_{12}^*b_{12} + a_{22}^* b_{22}} \right\} \\
+      &= a_{11}^*b_{11} + a_{21}^* b_{21} + a_{12}^*b_{12} + a_{22}^* b_{22}
+    \end{align*}
+    Similarly
+    \begin{align*}
+      \left(B, A \right) = b_{11}^*a_{11} + b_{21}^* a_{21} + b_{12}^*a_{12} + b_{22}^* a_{22}
+    \end{align*}
+    It is now clear that:
+    \begin{equation*}
+      \left( B, A \right)^* = \left(b_{11}^*a_{11} + b_{21}^* a_{21} + b_{12}^*a_{12} + b_{22}^* a_{22}\right)^* = a_{11}^*b_{11} + a_{21}^* b_{21} + a_{12}^*b_{12} + a_{22}^* b_{22} = \left( A, B\right)
+    \end{equation*}
+    As required, now moving onto linearity in the second argument:
+    \begin{align*}
+      \left(A , cB + dC \right) &= \trace\left\{A^\dagger\left(cB + dC\right)\right\}\\
+                    &= \trace\left\{\rbm{a_{11}^*, a_{21}^*; a_{12}^*, a_{22}^*} \rbm{cb_{11} + dc_{11}, cb_{12} + d c_{12}; cb_{21}+ d c_{21}, cb_{22}+ d c_{22}}\right\}\\
+                    &= a_{11}^*(cb_{11} + dc_{11}) + a_{21}^* (cb_{21} + dc_{21}) + a_{12}^*(cb_{12} + dc_{12}) + a_{22}^* (cb_{22}+ dc_{22})\\
+                    &= c\left(a_{11}^*b_{11} + a_{21}^* b_{21} + a_{12}^*b_{12} + a_{22}^*b_{22} \right)+ d\left(a_{11}^*c_{11}  + a_{21}^* c_{21}  + a_{12}^*c_{12} + a_{22}^*c_{22}\right)\\
+                    &= c\trace(A^\dagger B) + d\trace(A^\dagger C)\\
+                    &= c\left(A, B\right) + d\left(A, C\right)
+    \end{align*}
+    Positive definiteness is shown by:
+    \begin{align*}
+      \left(A , A \right) &= a_{11}^*a_{11} + a_{12}^*a_{12} + a_{21}^*a_{21} + a_{22}^*a_{22}\\
+                          &= |a_{11}|^2 + |a_{12}|^2 + |a_{21}|^2 + |a_{22}|^2\\
+                          & \geq 0\\
+    \end{align*}
+    and since $|c| = 0 \Leftrightarrow c = 0$ for any $c \in \mathbb{C}$.
+    We have form the above:
+    \begin{align*}
+      \left(A , A \right) = 0 \Leftrightarrow A = \rbm{0, 0; 0,0}
+    \end{align*}
+  \end{minipage}
+\end{minipage}
+
+3.
+\begin{minipage}[t]{0.9\textwidth}
+  \begin{minipage}[t]{\textwidth}
+    Let the basis of our ket space be given by $\left\{\ket{a}\right\}$, that is the set of eigenkets of $A$.
+    Now:
+    \begin{equation*}
+      A^n = A^n\sum_a \ket{a}\bra{a} = \sum_a A^n\ket{a}\bra{a} = \sum_a a^n\ket{a}\bra{a}
+    \end{equation*}
+    And similarly:
+    \begin{equation*}
+      A^m = \sum_a a^m\ket{a}\bra{a}
+    \end{equation*}
+    Thus
+    \begin{align*}
+      A^nA^m &= \left(\sum_a a^n\ket{a}\bra{a}\right)\left(\sum_{a'} a'^m\ket{a'}\bra{a'}\right)\\
+             &= \sum_a \sum_{a'} a^na'^m\ket{a}\braket{a | 'a}\bra{a}\\
+             &= \sum_a \sum_{a'} a^na'^m\ket{a}\tensor{\delta}{^a_{a'}}\bra{a}\\
+             &= \sum_a a^na^m\ket{a}\bra{a}\\
+             &= \sum_a a^{n + m}\ket{a}\bra{a}\\
+             &\equiv A^{n + m}
+    \end{align*}
+  \end{minipage}
+\end{minipage}
+
+4.
+\begin{minipage}[t]{0.9\textwidth}
+  a).
+  \begin{minipage}[t]{\textwidth}
+    By definition:
+    \begin{equation*}
+      \trace{A} = \sum_i \braket{i|A|i}
+    \end{equation*}
+    Now:
+    \begin{align*}
+      \trace(AB) &= \sum_i \braket{i|AB|i}\\
+                 &= \sum_i\sum_j \braket{i|A|j}\braket{j|B|i}\\
+                 &= \sum_i\sum_j \braket{j|B|i}\braket{i|A|j}\\
+                 &= \sum_j \braket{j|BA|j}\\
+                 &= \trace(BA)
+    \end{align*}
+
   \end{minipage}
 
+  b).
+  \begin{minipage}[t]{\textwidth}
+    We have:
+    \begin{align*}
+      AB &= \sum_{i} AB\ket{i}\bra{i}\\
+         &= \sum_{i}\sum_{j} A\ket{j} \bra{j}B\ket{i}\bra{i}\\
+         &= \sum_{i}\sum_{j}\sum_{k} \ket{k} \bra{k}A\ket{j} \bra{j}B\ket{i}\bra{i}\\
+         &= \sum_{i}\sum_{j}\sum_{k}  \bra{k}A\ket{j} \bra{j}B\ket{i} \ket{k}\bra{i}\\
+    \end{align*}
+    Now last expression above is just the sum of a number, $\braket{k|A|j}\braket{j|B|i}$, times by an operator and so:
+    \begin{align*}
+      (AB)^\dagger &= \sum_{i}\sum_{j}\sum_{k} \left(\bra{k}A\ket{j} \bra{j}B\ket{i} \ket{k}\bra{i}\right)^\dagger\\
+                   &= \sum_{i}\sum_{j}\sum_{k} \left(\bra{k}A\ket{j} \bra{j}B\ket{i}\right)^* \ket{i}\bra{k}\\
+                   &= \sum_{i}\sum_{j}\sum_{k} \bra{j}A^\dagger\ket{k} \bra{k}B^\dagger\ket{j} \ket{i}\bra{k}\\
+                   &= \sum_{i}\sum_{j}\sum_{k} \bra{j}A^\dagger\ket{k} \bra{k}B^\dagger\ket{j} \ket{i}\bra{k}\\
+    \end{align*}
+  \end{minipage}
 \end{minipage}
 \end{document}
