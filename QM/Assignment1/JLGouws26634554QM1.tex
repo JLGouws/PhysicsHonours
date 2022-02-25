@@ -263,8 +263,32 @@
     \begin{align*}
       (AB)^\dagger &= \sum_{i}\sum_{j}\sum_{k} \left(\bra{k}A\ket{j} \bra{j}B\ket{i} \ket{k}\bra{i}\right)^\dagger\\
                    &= \sum_{i}\sum_{j}\sum_{k} \left(\bra{k}A\ket{j} \bra{j}B\ket{i}\right)^* \ket{i}\bra{k}\\
-                   &= \sum_{i}\sum_{j}\sum_{k} \bra{j}A^\dagger\ket{k} \bra{k}B^\dagger\ket{j} \ket{i}\bra{k}\\
-                   &= \sum_{i}\sum_{j}\sum_{k} \bra{j}A^\dagger\ket{k} \bra{k}B^\dagger\ket{j} \ket{i}\bra{k}\\
+                   &= \sum_{i}\sum_{j}\sum_{k} \bra{j}A^\dagger\ket{k} \bra{i}B^\dagger\ket{j} \ket{i}\bra{k}\\
+                   &= \sum_{i}\sum_{j}\sum_{k} \ket{i}\bra{i}B^\dagger\ket{j}\bra{j}A^\dagger\ket{k}\bra{k}\\
+                   &= \sum_{i}\sum_{j} \ket{i}\bra{i}B^\dagger A^\dagger\ket{k}\bra{k}\\
+                   &= B^\dagger A^\dagger\\
+    \end{align*}
+    As required.
+  \end{minipage}
+
+  c).
+  \begin{minipage}[t]{\textwidth}
+    \begin{align*}
+      A &= \ket{\alpha}\bra{\beta}\\
+        &= \sum_n\ket{n}\braket{n|\alpha}\bra{\beta}\\
+        &= \sum_n\sum_m\ket{n}\braket{n|\alpha}\braket{\beta|m}\bra{m}\\
+        &= \sum_n\sum_m \left(\braket{n|\alpha}\braket{\beta|m}\right)\ket{n}\bra{m}
+    \end{align*}
+  \end{minipage}
+\end{minipage}
+
+\begin{minipage}[t]{\textwidth}
+  d).
+  \begin{minipage}[t]{\textwidth}
+    \begin{align*}
+      A^\dagger &= \left(\sum_n\sum_m\ket{n}\braket{n|\alpha}\braket{\beta|m}\bra{m}\right)^\dagger\\
+                &= \sum_n\sum_m \left(\braket{n|\alpha}\braket{\beta|m}\right)^*\ket{m}\bra{n}\\
+                &= \sum_n\sum_m \left(\braket{m|\alpha}\braket{\beta|n}\right)^*\ket{n}\bra{m}\\
     \end{align*}
   \end{minipage}
 \end{minipage}
