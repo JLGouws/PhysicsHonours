@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.0.4 (TeX Live 2017/Debian)  (format=lualatex 2020.3.14)  18 FEB 2022 18:42
+This is LuaTeX, Version 1.0.4 (TeX Live 2017/Debian)  (format=lualatex 2020.3.14)  27 FEB 2022 16:36
  restricted system commands enabled.
 **JLGouws26634554QM1.tex
 (./JLGouws26634554QM1.tex
@@ -34,7 +34,7 @@ Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
 '.
 Inserting `luaotfload.rewrite_fontname' at position 4 in `luaotfload.patch_font'
 .
-luaotfload | main : initialization completed in 0.084 seconds
+luaotfload | main : initialization completed in 0.095 seconds
 Babel <3.18> and hyphenation patterns for 1 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
@@ -2975,6 +2975,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 60--64
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 78--80
+
+ []
+
+
 Overfull \hbox (16.47594pt too wide) in paragraph at lines 138--162
 []\T1/ppl/m/n/12 a). [] 
  []
@@ -2982,19 +2987,17 @@ Overfull \hbox (16.47594pt too wide) in paragraph at lines 138--162
 (load luc: /home/jonathan/.texlive2017/texmf-var/luatex-cache/generic/fonts/otl/
 lmroman10-regular.luc)(load luc: /home/jonathan/.texlive2017/texmf-var/luatex-ca
 che/generic/fonts/otl/lmroman7-regular.luc)
-Overfull \hbox (17.11182pt too wide) in paragraph at lines 165--208
+Overfull \hbox (17.11182pt too wide) in paragraph at lines 166--215
 []\T1/ppl/m/n/12 b). [] 
- []
-
-
-Overfull \hbox (18.0pt too wide) in paragraph at lines 164--209
-[][] 
  []
 
 [1
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \vbox (5.21597pt too high) has occurred while \output is active []
+
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -3002,17 +3005,32 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [2]
-Overfull \hbox (16.47594pt too wide) in paragraph at lines 236--252
+Underfull \hbox (badness 10000) in paragraph at lines 228--230
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 235--237
+
+ []
+
+
+Overfull \hbox (15.91187pt too wide) in paragraph at lines 218--238
+[]$[]$ [] 
+ []
+
+
+Overfull \hbox (16.47594pt too wide) in paragraph at lines 266--282
 []\T1/ppl/m/n/12 a). [] 
  []
 
 
-Overfull \hbox (17.11182pt too wide) in paragraph at lines 253--273
+Overfull \hbox (17.11182pt too wide) in paragraph at lines 283--303
 []\T1/ppl/m/n/12 b). [] 
  []
 
 
-Overfull \hbox (15.80386pt too wide) in paragraph at lines 274--283
+Overfull \hbox (15.80386pt too wide) in paragraph at lines 304--313
 []\T1/ppl/m/n/12 c). [] 
  []
 
@@ -3033,12 +3051,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [4]
-Overfull \hbox (17.80792pt too wide) in paragraph at lines 286--294
+Overfull \hbox (17.80792pt too wide) in paragraph at lines 316--324
 []\T1/ppl/m/n/12 d). [] 
  []
 
 
-Overfull \hbox (18.0pt too wide) in paragraph at lines 285--295
+Overfull \hbox (18.0pt too wide) in paragraph at lines 315--325
 [][] 
  []
 
@@ -3059,23 +3077,23 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 )
 
 Here is how much of LuaTeX's memory you used:
- 44471 strings out of 494480
+ 44495 strings out of 494480
  100000,1373583 words of node,token memory allocated
- 606 words of node memory still in use:
-   7 hlist, 2 vlist, 2 rule, 2 glue, 7 kern, 17 attribute, 65 glue_spec, 17 attr
-ibute_list, 1 write nodes
-   avail lists: 1:2,2:1992,3:162,4:163,5:322,6:1631,7:1388,8:193,9:1113,10:3,11:
-44
- 47208 multiletter control sequences out of 65536+600000
- 71 fonts using 14734807 bytes
- 74i,19n,128p,878b,501s stack positions out of 5000i,500n,10000p,200000b,100000s
+ 646 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 2 glue, 11 kern, 22 attribute, 65 glue_spec, 22 att
+ribute_list, 1 write nodes
+   avail lists: 1:2,2:2170,3:163,4:203,5:360,6:1774,7:1505,8:195,9:1186,10:3,11:
+55
+ 47228 multiletter control sequences out of 65536+600000
+ 75 fonts using 15056647 bytes
+ 74i,19n,128p,878b,514s stack positions out of 5000i,500n,10000p,200000b,100000s
 </usr/share/texmf/fonts/opentype/public/lm/lmroman12-regular.otf></usr/share/tex
 live/texmf-dist/fonts/opentype/public/libertinus/libertinusmath-regular.otf></us
 r/share/texlive/texmf-dist/fonts/opentype/public/libertinus/libertinusmath-regul
 ar.otf>{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/te
 xlive/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/urw/palatino/uplr8a.pfb>
-Output written on JLGouws26634554QM1.pdf (5 pages, 60797 bytes).
+Output written on JLGouws26634554QM1.pdf (5 pages, 64278 bytes).
 
 PDF statistics: 53 PDF objects out of 1000 (max. 8388607)
  34 compressed objects within 1 object stream
