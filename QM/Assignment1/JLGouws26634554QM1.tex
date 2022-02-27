@@ -69,10 +69,10 @@
                                                                                              &= \alpha \braket{\psi|\phi} + \braket{\psi|\psi} + |\alpha|^2 \braket{\phi | \phi}+ \alpha^*\braket{\phi|\psi}\\
                                                                                              & \geq 0\\
   \end{align*}
-  The above statement holds for all $\alpha$, and in particular $\alpha = i\frac{\braket{\psi|\phi}}{\braket{\phi | \phi}}$.
+  The above statement holds for all $\alpha$, and in particular $\alpha = -\frac{\braket{\phi|\psi}}{\braket{\phi | \phi}}$.
   If we substitute this choice of $\alpha$ into the inequality above, we get:
   \begin{align*}
-    \Rightarrow & i \frac{|\braket{\psi|\phi}|^2}{\braket{\phi|\phi}} + \braket{\psi|\psi} - |\braket{\psi|\phi}|^2\frac{\braket{\phi | \phi}}{|\braket{\phi | \phi}|^2} - i \frac{|\braket{\phi|\psi}|^2}{\braket{\phi|\phi}} \geq 0\\
+                & -\frac{|\braket{\psi|\phi}|^2}{\braket{\phi|\phi}} + \braket{\psi|\psi} + |\braket{\psi|\phi}|^2\frac{\braket{\phi | \phi}}{|\braket{\phi | \phi}|^2} - \frac{|\braket{\psi|\phi}|^2}{\braket{\phi|\phi}} \geq 0\\
     \Rightarrow & \braket{\psi|\psi} - \frac{|\braket{\psi|\phi}|^2}{\braket{\phi | \phi}} \geq 0\\
     \Rightarrow & \braket{\psi|\psi} \braket{\phi | \phi} \geq |\braket{\psi|\phi}|^2
   \end{align*}
@@ -146,7 +146,7 @@
     For this we have:
     \begin{align*}
       a &= \alpha + \delta\\
-      b &= \beta + -i\gamma\\
+      b &= \beta -i\gamma\\
       c &= \beta  + i\gamma\\
       d &= \alpha - \delta
     \end{align*}
@@ -277,7 +277,6 @@ $\phantom{\text{2.}}$
                  &= \sum_j \braket{j|BA|j}\\
                  &= \trace(BA)
     \end{align*}
-
   \end{minipage}
 
   b).
@@ -285,18 +284,18 @@ $\phantom{\text{2.}}$
     We have:
     \begin{align*}
       AB &= \sum_{i} AB\ket{i}\bra{i}\\
-         &= \sum_{i}\sum_{j} A\ket{j} \bra{j}B\ket{i}\bra{i}\\
-         &= \sum_{i}\sum_{j}\sum_{k} \ket{k} \bra{k}A\ket{j} \bra{j}B\ket{i}\bra{i}\\
-         &= \sum_{i}\sum_{j}\sum_{k} \right( \bra{k}A\ket{j} \bra{j}B\ket{i}\left) \ket{k}\bra{i}\\
+         &= \sum_{i, j}A\ket{j} \bra{j}B\ket{i}\bra{i}\\
+         &= \sum_{i, j, k}\ket{k} \bra{k}A\ket{j} \bra{j}B\ket{i}\bra{i}\\
+         &= \sum_{i, j, k}\left( \bra{k}A\ket{j} \bra{j}B\ket{i} \right) \ket{k}\bra{i}
     \end{align*}
     Now last expression above is just the sum of a number, $\braket{k|A|j}\braket{j|B|i}$, times by an operator and so:
     \begin{align*}
-      (AB)^\dagger &= \sum_{i}\sum_{j}\sum_{k} \left(\bra{k}A\ket{j} \bra{j}B\ket{i} \ket{k}\bra{i}\right)^\dagger\\
-                   &= \sum_{i}\sum_{j}\sum_{k} \left(\bra{k}A\ket{j} \bra{j}B\ket{i}\right)^* \ket{i}\bra{k}\\
-                   &= \sum_{i}\sum_{j}\sum_{k} \bra{j}A^\dagger\ket{k} \bra{i}B^\dagger\ket{j} \ket{i}\bra{k}\\
-                   &= \sum_{i}\sum_{j}\sum_{k} \ket{i}\bra{i}B^\dagger\ket{j}\bra{j}A^\dagger\ket{k}\bra{k}\\
-                   &= \sum_{i}\sum_{j} \ket{i}\bra{i}B^\dagger A^\dagger\ket{k}\bra{k}\\
-                   &= B^\dagger A^\dagger\\
+      (AB)^\dagger &= \sum_{i, j, k} \left[\left(\bra{k}A\ket{j} \bra{j}B\ket{i} \right)\ket{k}\bra{i}\right]^\dagger\\
+                   &= \sum_{i, j, k} \left(\bra{k}A\ket{j} \bra{j}B\ket{i}\right)^* \ket{i}\bra{k}\\
+                   &= \sum_{i, j, k}\left( \bra{j}A^\dagger\ket{k} \bra{i}B^\dagger\ket{j}\right) \ket{i}\bra{k}\\
+                   &= \sum_{i, j, k} \ket{i}\bra{i}B^\dagger\ket{j}\bra{j}A^\dagger\ket{k}\bra{k}\\
+                   &= \sum_{i}\ket{i}\bra{i}B^\dagger A^\dagger\\
+                   &= B^\dagger A^\dagger
     \end{align*}
     As required.
   \end{minipage}
@@ -306,13 +305,14 @@ $\phantom{\text{2.}}$
     \begin{align*}
       A &= \ket{\alpha}\bra{\beta}\\
         &= \sum_n\ket{n}\braket{n|\alpha}\bra{\beta}\\
-        &= \sum_n\sum_m\ket{n}\braket{n|\alpha}\braket{\beta|m}\bra{m}\\
-        &= \sum_n\sum_m \left(\braket{n|\alpha}\braket{\beta|m}\right)\ket{n}\bra{m}
+        &= \sum_n\sum_m\ket{n}\braket{n|\alpha}\braket{\beta|m}\bra{m}
     \end{align*}
+    This is a matrix with the $nm$-th element having the value: $\braket{n|\alpha}\braket{\beta|m}$.
   \end{minipage}
 \end{minipage}
 
-\begin{minipage}[t]{\textwidth}
+$\phantom{\text{4.}}$
+\begin{minipage}[t]{0.9\textwidth}
   d).
   \begin{minipage}[t]{\textwidth}
     \begin{align*}
@@ -320,6 +320,7 @@ $\phantom{\text{2.}}$
                 &= \sum_n\sum_m \left(\braket{n|\alpha}\braket{\beta|m}\right)^*\ket{m}\bra{n}\\
                 &= \sum_n\sum_m \left(\braket{m|\alpha}\braket{\beta|n}\right)^*\ket{n}\bra{m}\\
     \end{align*}
+    This shows that the $nm$-th element of $A^\dagger$ is the complex conjugate of the $mn$-th element of $A$. This is the definition of the Hermitian conjugate of a matrix.
   \end{minipage}
 \end{minipage}
 \end{document}
