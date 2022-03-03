@@ -20,6 +20,7 @@
 \usepackage{tensor}
 \usepackage{tabstackengine}
 \setmathfont{Libertinus Math}
+\usepackage[frak=euler]{mathalpha}
 
 \usetikzlibrary{decorations.pathreplacing,decorations.markings}
 \usepgfplotslibrary{fillbetween}
@@ -67,176 +68,89 @@
 \begin{minipage}[t]{0.9\textwidth}
   We have:
   \begin{align*}
-    z \frac{ \partial \ln \mathcal{Z}}{\partial z} = z\left. \frac{\partial \mathcal{Z}}{\partial z} \right/ \mathcal{Z} = \frac{z}{\mathcal{Z}} \sum_{N} N z^{N - 1} Z_N = \sum_{N} N \frac{z^{N} Z_N}{\mathcal{Z}}= \sum_{N} N \frac{e^{\beta \mu N} \sum_re^{-\beta E_r}}{\mathcal{Z}} = \sum_{N} N P_N = \langle N \rangle
+    z \frac{ \partial \ln \mathfrak{Z}}{\partial z} = z\left. \frac{\partial \mathfrak{Z}}{\partial z} \right/ \mathfrak{Z} = \frac{z}{\mathfrak{Z}} \sum_{N} N z^{N - 1} Z_N = \sum_{N} N \frac{z^{N} Z_N}{\mathfrak{Z}}= \sum_{N} N \frac{e^{\beta \mu N} \sum_re^{-\beta E_r}}{\mathfrak{Z}} = \sum_{N} N P_N = \langle N \rangle
   \end{align*}
 \end{minipage}
 
 2.
 \begin{minipage}[t]{0.9\textwidth}
-  The partition function for the ideal gas:
-  
-\end{minipage}
-
-$\phantom{\text{2.}}$
-\begin{minipage}[t]{0.9\textwidth}
-  b).
-  \begin{minipage}[t]{\textwidth}
-    $\trace\left({A^\dagger B}\right)$ is an inner product:
-    First, $\left(A, B\right) = \trace\left(A^\dagger B\right)$, is indeed a map $\mathbb{C}^{2\times 2}\times \mathbb{C}^{2\times 2} \to \mathbb{C}$.\\
-    Let:
-    \begin{equation*}
-      A = \rbm{a_{11}, a_{12}; a_{21}, a_{22}} \qquad \qquad B = \rbm{b_{11}, b_{12}; b_{21}, b_{22}} \qquad  \qquad C = \rbm{c_{11}, c_{12}; c_{21}, c_{22}}
-    \end{equation*}
-    Note:
-    \begin{align*}
-      \left( A, B \right) &= \trace\left\{\rbm{a_{11}^*, a_{21}^*; a_{12}^*, a_{22}^*} \rbm{b_{11}, b_{12}; b_{21}, b_{22}}\right\}\\
-      & = \trace\left\{\rbm{a_{11}^*b_{11} + a_{21}^* b_{21}, a_{11}^*b_{12} + a_{21}^*b_{22}; a_{12}^*b_{11} + a_{22}^*b_{21}, a_{12}^*b_{12} + a_{22}^* b_{22}} \right\} \\
-      &= a_{11}^*b_{11} + a_{21}^* b_{21} + a_{12}^*b_{12} + a_{22}^* b_{22}
-    \end{align*}
-    Similarly
-    \begin{align*}
-      \left(B, A \right) = b_{11}^*a_{11} + b_{21}^* a_{21} + b_{12}^*a_{12} + b_{22}^* a_{22}
-    \end{align*}
-    It is now clear that:
-    \begin{equation*}
-      \left( B, A \right)^* = \left(b_{11}^*a_{11} + b_{21}^* a_{21} + b_{12}^*a_{12} + b_{22}^* a_{22}\right)^* = a_{11}^*b_{11} + a_{21}^* b_{21} + a_{12}^*b_{12} + a_{22}^* b_{22} = \left( A, B\right)
-    \end{equation*}
-    As required, now moving onto linearity in the second argument:
-    \begin{align*}
-      \left(A , cB + dC \right) &= \trace\left\{A^\dagger\left(cB + dC\right)\right\}\\
-                    &= \trace\left\{\rbm{a_{11}^*, a_{21}^*; a_{12}^*, a_{22}^*} \rbm{cb_{11} + dc_{11}, cb_{12} + d c_{12}; cb_{21}+ d c_{21}, cb_{22}+ d c_{22}}\right\}\\
-                    &= a_{11}^*(cb_{11} + dc_{11}) + a_{21}^* (cb_{21} + dc_{21}) + a_{12}^*(cb_{12} + dc_{12}) + a_{22}^* (cb_{22}+ dc_{22})\\
-                    &= c\left(a_{11}^*b_{11} + a_{21}^* b_{21} + a_{12}^*b_{12} + a_{22}^*b_{22} \right)+ d\left(a_{11}^*c_{11}  + a_{21}^* c_{21}  + a_{12}^*c_{12} + a_{22}^*c_{22}\right)\\
-                    &= c\trace(A^\dagger B) + d\trace(A^\dagger C)\\
-                    &= c\left(A, B\right) + d\left(A, C\right)
-    \end{align*}
-    Positive definiteness is shown by:
-    \begin{align*}
-      \left(A , A \right) &= a_{11}^*a_{11} + a_{12}^*a_{12} + a_{21}^*a_{21} + a_{22}^*a_{22}\\
-                          &= |a_{11}|^2 + |a_{12}|^2 + |a_{21}|^2 + |a_{22}|^2\\
-                          & \geq 0
-    \end{align*}
-    and since $|c|^2 = 0 \Leftrightarrow c = 0$ for any $c \in \mathbb{C}$.
-    We have form the above:
-    \begin{align*}
-      \left(A , A \right) = 0 \Leftrightarrow A = \rbm{0, 0; 0,0}
-    \end{align*}
-    This is actually obvious if one realizes that there is an isomorphism:
-    \begin{align*}
-      I :& \mathbb{C}^{2 \times 2} \to \mathbb{C}^4\\
-        :& \rbm{a, b; c, d} \mapsto \rbm{a; b; c; d}
-    \end{align*}
-    Then $\tr{A^\dagger B}$ is the standard inner product on $\mathbb{C}^4$.
-  \end{minipage}
-\end{minipage}
-
-\begin{minipage}[t]{0.9\textwidth}
-  $\phantom{\text{b).}}$
-  \begin{minipage}[t]{\textwidth}
-    The product of a $2\times 2$ diagonal matrix and an anti-diagonal matrix zero:
-    \begin{equation*}
-      \rbm{a, 0; 0, b} \rbm{0, c; d, 0} = \rbm{0, 0; 0, 0} \Rightarrow (I, \sigma_x) = (I, \sigma_y) = (\sigma_z, \sigma_x) = (\sigma_z, \sigma_y) = 0
-    \end{equation*}
-    It now remains to check the product of the two diagonal and anti-diagonal matrices:
-    \begin{gather*}
-      (I, \sigma_z) = 1 + 0 + 0 - 1 = 0\\
-      (\sigma_x, \sigma_y) = 0 + 1^* (-i) + 1^*(i) + 0 = 0\\
-    \end{gather*}
-    This shows that the four matrices are mutually orthogonal.\\
-
-    All matrices have two elements, and each element has modulus of $1$.
-    This makes the norm of each matrix $\sqrt{2}$, hence:
-    \begin{equation*}
-      \left\{\frac{I}{\sqrt{2}}, \frac{\sigma_x}{\sqrt{2}} , \frac{\sigma_y}{\sqrt{2}} , \frac{\sigma_z}{\sqrt{2}} \right\}
-    \end{equation*}
-    Forms an orthonormal basis for this space.\\
-  \end{minipage}
+  The cannonical partition function for an ideal gas is:
+  \begin{align*}
+    Z_N &= \frac{1}{h^3N!} \int d^{3N}p d^{3N}qe^{-\beta H}\\
+        &= \frac{1}{\lambda^{3N}N!} \int d^{3N}q e^{-\beta \sum_{i < j}} u_{ij}\\
+        &= \frac{1}{\lambda^{3N}N!} \int d^{3N}q e^{-\beta \times 0}\\
+        &= \frac{1}{\lambda^{3N}N!} \int d^{3N}q \\
+        &= \frac{V^N}{\lambda^{3N}N!}
+  \end{align*}  
+  Since there is no interaction between ideal gas molecules.
+  We can use this to evaluate the grand partion function for an ensemble of ideal gas samples:
+  \begin{align*}
+    \mathfrak{Z} &= \sum_{N = 0}^\infty z^N \frac{V^N}{\lambda^{3N}N!}\\
+                 &= \sum_{N = 0}^\infty \frac{(zV/\lambda^3)^N}{N!}\\
+                 &= e^{zV/\lambda^3}\\
+  \end{align*}
+  We also have that:
+  \begin{equation*}
+    P = \frac{k_BT}{V} \ln \mathfrak{Z} = z\frac{k_BT}{\lambda^3} \Rightarrow \frac{P}{k_BT} = \frac{z}{\lambda^3}
+  \end{equation*}
+  and:
+  \begin{equation*}
+    \langle N\rangle = z \frac{\partial}{\partial z} \left[ \frac{zV}{\lambda^3} \right] = \frac{zV}{\lambda^3} \Rightarrow \frac{\langle N \rangle}{V} = \frac{z}{\lambda^3}
+  \end{equation*}
+  From which we deduce:
+  \begin{equation*}
+    \frac{P}{k_BT} = \frac{\langle N \rangle}{V} \Rightarrow PV = \langle N \rangle k_BT
+  \end{equation*}
 \end{minipage}
 
 3.
 \begin{minipage}[t]{0.9\textwidth}
-  \begin{minipage}[t]{\textwidth}
-    Let the basis of our ket space be given by $\left\{\ket{a}\right\}$, that is the set of eigenkets of $A$.
-    Now:
-    \begin{equation*}
-      A^n = A^n\sum_a \ket{a}\bra{a} = \sum_a A^n\ket{a}\bra{a} = \sum_a a^n\ket{a}\bra{a}
-    \end{equation*}
-    And similarly:
-    \begin{equation*}
-      A^m = \sum_a a^m\ket{a}\bra{a}
-    \end{equation*}
-    Thus
-    \begin{align*}
-      A^nA^m &= \left(\sum_a a^n\ket{a}\bra{a}\right)\left(\sum_{a'} a'^m\ket{a'}\bra{a'}\right)\\
-             &= \sum_a \sum_{a'} a^na'^m\ket{a}\braket{a | a'}\bra{a'}\\
-             &= \sum_a \sum_{a'} a^na'^m\ket{a}\tensor{\delta}{^{a'}_{a}}\bra{a'}\\
-             &= \sum_a a^na^m\ket{a}\bra{a}\\
-             &= \sum_a a^{n + m}\ket{a}\bra{a}\\
-             &\equiv A^{n + m}
-    \end{align*}
-  \end{minipage}
+  We have:
+  \begin{align*}
+                & \frac{1}{\lambda^3} \sum_{l=1}^\infty b_l z^l = \frac{P}{k_BT} = \frac{1}{\lambda^3} \sum_{l =1}^\infty a_l \times \left(\lambda^3 \frac{\langle N\rangle}{V} \right)^l\\
+    \Rightarrow & \sum_{l=1}^\infty b_l z^l =\sum_{l =1}^\infty a_l \times \left(\sum_{k=1}^\infty k b_k z^k\right)^l
+  \end{align*}
+  Now we match coefficients of $z$. The only way to get a $z$ term on the right handside is if $l = k = 1$:
+  \begin{equation*}
+    b_1z = a_1 \times b_1 z \Rightarrow a_1 = 1
+  \end{equation*}
+  Also note that:
+  \begin{equation*}
+    b_1 = \frac{1}{V}\int_Vd^3r = 1 \Rightarrow a_1=b_1 = 1
+  \end{equation*}
+  For the $z^2$ terms, the only way to get $z^2$ on the right is if $l = 1$ and $k = 2$ or if $l = 2$ and $k = 1$
+  \begin{align*}
+                & b_2z^2 = a_1 \times (2 b_2 z^2) + a_2 \times (b_1 z^1)^2\\
+    \Rightarrow & b_2 = 2 b_2 + a_2 \\
+    \Rightarrow & a_2 = - b_2
+  \end{align*}
+  Where I used the fact that $a_1 = b_1 = 1$.
+  For the $z^3$ terms, the only way to get $z^3$ on the right is if $l = l$ and $k = 3$ or if $l = 2$ and $k = 1, 2$ (cross multiplied terms) and $l = 3$. This is because $3$ is a prime number.
+  \begin{align*}
+                & b_3z^3 = a_1 \times (3 b_3 z^3) + a_2 \times (b_1 z \times 2 b_2 z^2 + 2 b_2 z^2 \times b_1 z) + a_3 \times (b_1 z)^3\\
+    \Rightarrow & b_3 = 3 b_3 + (-b_2)(4 b_2) + a_3\\
+    \Rightarrow & a_3 = 4 b_2^2 - 2 b_3
+  \end{align*}
 \end{minipage}
 
 4.
 \begin{minipage}[t]{0.9\textwidth}
-  a).
-  \begin{minipage}[t]{\textwidth}
-    By definition:
-    \begin{equation*}
-      \trace{A} = \sum_i \braket{i|A|i}
-    \end{equation*}
-    Now:
-    \begin{align*}
-      \trace(AB) &= \sum_i \braket{i|AB|i}\\
-                 &= \sum_i\sum_j \braket{i|A|j}\braket{j|B|i}\\
-                 &= \sum_i\sum_j \braket{j|B|i}\braket{i|A|j}\\
-                 &= \sum_j \braket{j|BA|j}\\
-                 &= \trace(BA)
-    \end{align*}
-  \end{minipage}
-
-  b).
-  \begin{minipage}[t]{\textwidth}
-    We have:
-    \begin{align*}
-      AB &= \sum_{i} AB\ket{i}\bra{i}\\
-         &= \sum_{i, j}A\ket{j} \bra{j}B\ket{i}\bra{i}\\
-         &= \sum_{i, j, k}\ket{k} \bra{k}A\ket{j} \bra{j}B\ket{i}\bra{i}\\
-         &= \sum_{i, j, k}\left( \bra{k}A\ket{j} \bra{j}B\ket{i} \right) \ket{k}\bra{i}
-    \end{align*}
-    Now last expression above is just the sum of a number, $\braket{k|A|j}\braket{j|B|i}$, times by an operator and so:
-    \begin{align*}
-      (AB)^\dagger &= \sum_{i, j, k} \left[\left(\bra{k}A\ket{j} \bra{j}B\ket{i} \right)\ket{k}\bra{i}\right]^\dagger\\
-                   &= \sum_{i, j, k} \left(\bra{k}A\ket{j} \bra{j}B\ket{i}\right)^* \ket{i}\bra{k}\\
-                   &= \sum_{i, j, k}\left( \bra{j}A^\dagger\ket{k} \bra{i}B^\dagger\ket{j}\right) \ket{i}\bra{k}\\
-                   &= \sum_{i, j, k} \ket{i}\bra{i}B^\dagger\ket{j}\bra{j}A^\dagger\ket{k}\bra{k}\\
-                   &= \sum_{i}\ket{i}\bra{i}B^\dagger A^\dagger\\
-                   &= B^\dagger A^\dagger
-    \end{align*}
-    As required.
-  \end{minipage}
-
-  c).
-  \begin{minipage}[t]{\textwidth}
-    \begin{align*}
-      A &= \ket{\alpha}\bra{\beta}\\
-        &= \sum_n\ket{n}\braket{n|\alpha}\bra{\beta}\\
-        &= \sum_n\sum_m\ket{n}\braket{n|\alpha}\braket{\beta|m}\bra{m}
-    \end{align*}
-    This is a matrix with the $nm$-th element having the value: $\braket{n|\alpha}\braket{\beta|m}$.
-  \end{minipage}
+  \begin{align*}
+    a_2 &= -\frac{2 \pi}{\lambda^3} \int_0^\infty(e^{-V(r) / kT} - 1)r^2dr\\
+        &= -\frac{2 \pi}{\lambda^3} \int_0^\alpha(0 - 1)r^2dr -\frac{2 \pi}{\lambda^3}\int_\alpha^\infty(1 - 1)r^2dr\\
+        &= \frac{2 \pi}{\lambda^3} \int_0^\alpha r^2dr\\
+        &= \frac{2 \pi \alpha^3}{3\lambda^3}
+  \end{align*}
 \end{minipage}
 
-$\phantom{\text{4.}}$
+5.
 \begin{minipage}[t]{0.9\textwidth}
-  d).
-  \begin{minipage}[t]{\textwidth}
-    \begin{align*}
-      A^\dagger &= \left(\sum_n\sum_m\ket{n}\braket{n|\alpha}\braket{\beta|m}\bra{m}\right)^\dagger\\
-                &= \sum_n\sum_m \left(\braket{n|\alpha}\braket{\beta|m}\right)^*\ket{m}\bra{n}\\
-                &= \sum_n\sum_m \left(\braket{m|\alpha}\braket{\beta|n}\right)^*\ket{n}\bra{m}\\
-    \end{align*}
-    This shows that the $nm$-th element of $A^\dagger$ is the complex conjugate of the $mn$-th element of $A$. This is the definition of the Hermitian conjugate of a matrix.
-  \end{minipage}
+  \begin{align*}
+    a_2 &= -\frac{2 \pi}{\lambda^3} \int_0^\infty(e^{-V(r) / kT} - 1)r^2dr\\
+        &= -\frac{2 \pi}{\lambda^3} \left[\int_0^\alpha(0 - 1)r^2dr + \int_\alpha^{2\alpha}(e^{v_0} + 1)r^2dr + \int_{2\alpha}^\infty(1 - 1)r^2dr\right]\\
+        &= -\frac{2 \pi}{\lambda^3} \left[\frac{\alpha^3}{3} + (e^{v_0} + 1)\left(\frac{8 \alpha^3}{3} - \frac{\alpha^3}{3}\right)\right]\\
+        &= -\frac{2 \pi \alpha^3 (7e^{v_0} + 8 )}{3\lambda^3}
+  \end{align*}
 \end{minipage}
+
 \end{document}
