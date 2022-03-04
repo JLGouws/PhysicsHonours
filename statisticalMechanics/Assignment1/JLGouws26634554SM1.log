@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.12.0 (TeX Live 2020/Debian)  (format=lualatex 2022.2.15)  3 MAR 2022 13:48
+This is LuaHBTeX, Version 1.12.0 (TeX Live 2020/Debian)  (format=lualatex 2022.2.15)  3 MAR 2022 18:45
  restricted system commands enabled.
 **JLGouws26634554SM1.tex
 (./JLGouws26634554SM1.tex
@@ -1425,7 +1425,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[2] (./JLGouws26634554SM1.aux)
+[2]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[3] (./JLGouws26634554SM1.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1434,10 +1442,10 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Here is how much of LuaTeX's memory you used:
  38181 strings out of 478824
  100000,1648299 words of node,token memory allocated
- 612 words of node memory still in use:
-   7 hlist, 2 vlist, 2 rule, 2 glue, 7 kern, 1 glyph, 15 attribute, 65 glue_spec
-, 15 attribute_list, 2 write nodes
-   avail lists: 2:655,3:124,4:11,5:434,6:32,7:2898,8:66,9:1170,10:7,11:54
+ 649 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 2 glue, 12 kern, 1 glyph, 18 attribute, 65 glue_spe
+c, 18 attribute_list, 2 write nodes
+   avail lists: 2:679,3:125,4:11,5:452,6:29,7:3274,8:66,9:1206,10:7,11:106
  56489 multiletter control sequences out of 65536+600000
  76 fonts using 14397783 bytes
  98i,13n,116p,734b,302s stack positions out of 5000i,500n,10000p,200000b,200000s
@@ -1449,10 +1457,10 @@ us-fonts/LibertinusMath-Regular.otf>{/usr/share/texlive/texmf-dist/fonts/enc/dvi
 ps/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/
 eufm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb>
-Output written on JLGouws26634554SM1.pdf (2 pages, 58540 bytes).
+Output written on JLGouws26634554SM1.pdf (3 pages, 64649 bytes).
 
-PDF statistics: 55 PDF objects out of 1000 (max. 8388607)
- 35 compressed objects within 1 object stream
+PDF statistics: 58 PDF objects out of 1000 (max. 8388607)
+ 37 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 131072)
  16 words of extra memory for PDF output out of 10000 (max. 100000000)
 

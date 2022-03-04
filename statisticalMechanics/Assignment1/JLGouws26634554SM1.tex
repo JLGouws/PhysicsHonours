@@ -68,7 +68,7 @@
 \begin{minipage}[t]{0.9\textwidth}
   We have:
   \begin{align*}
-    z \frac{ \partial \ln \mathfrak{Z}}{\partial z} = z\left. \frac{\partial \mathfrak{Z}}{\partial z} \right/ \mathfrak{Z} = \frac{z}{\mathfrak{Z}} \sum_{N} N z^{N - 1} Z_N = \sum_{N} N \frac{z^{N} Z_N}{\mathfrak{Z}}= \sum_{N} N \frac{e^{\beta \mu N} \sum_re^{-\beta E_r}}{\mathfrak{Z}} = \sum_{N} N P_N = \langle N \rangle
+    z \frac{ \partial \ln \mathfrak{Z}}{\partial z} = z\left. \frac{\partial \mathfrak{Z}}{\partial z} \right/ \mathfrak{Z} = \frac{z}{\mathfrak{Z}} \sum_{N} N z^{N - 1} Z_N = \sum_{N} N \frac{z^{N} Z_N}{\mathfrak{Z}}= \sum_{N} N \frac{e^{\beta \mu N} \sum_re^{-\beta E_r}}{\mathfrak{Z}} = \sum_{N} N P_N = \langle N \rangle\\
   \end{align*}
 \end{minipage}
 
@@ -76,8 +76,8 @@
 \begin{minipage}[t]{0.9\textwidth}
   The cannonical partition function for an ideal gas is:
   \begin{align*}
-    Z_N &= \frac{1}{h^3N!} \int d^{3N}p d^{3N}qe^{-\beta H}\\
-        &= \frac{1}{\lambda^{3N}N!} \int d^{3N}q e^{-\beta \sum_{i < j}} u_{ij}\\
+    Z_N &= \frac{1}{h^3N!} \int d^{3N}p_{\ } d^{3N}qe^{-\beta H}\\
+        &= \frac{1}{\lambda^{3N}N!} \int d^{3N}q \exp\left\{-\beta \sum\limits_{i < j} u_{ij}\right\}\\
         &= \frac{1}{\lambda^{3N}N!} \int d^{3N}q e^{-\beta \times 0}\\
         &= \frac{1}{\lambda^{3N}N!} \int d^{3N}q \\
         &= \frac{V^N}{\lambda^{3N}N!}
@@ -135,22 +135,42 @@
 
 4.
 \begin{minipage}[t]{0.9\textwidth}
+  We wish to find $a_2 = -b_2$, to this end note that:
   \begin{align*}
-    a_2 &= -\frac{2 \pi}{\lambda^3} \int_0^\infty(e^{-V(r) / kT} - 1)r^2dr\\
+    b_2 &= \frac{\lambda^3}{2!V\lambda^{3 \times 2}} \int d^3q_1\int d^3q_2f_{12}\\
+        &= \frac{1}{2V\lambda^{3}} \int d^3q_1 \int d^3(q_2 - q_1)\left[e^{-\beta V(|q_2 - q_1|)} - 1\right]\\
+        &= \frac{1}{2V\lambda^{3}} \int d^3q_1 \int d^3x \left[e^{-\beta V(|x|)} - 1\right]\\
+  \end{align*}
+  Where $x = q_2 - q_1$.
+  Provided that the interaction range of the potential is short the integrals can be treated as approximately independent.
+  This follows from the fact that if $q_1$ starts differing largely from $q_2$, the integrand dependent on $x$ becomes negligible ($V \to 0$). Thus the integral over $x$ cannot vary much with changing $q_1$. Hence:
+  \begin{align*}
+    b_2 &\approx \frac{1}{2V\lambda^{3}} \left(\int d^3q_1\right)\left( \int d^3x \left[e^{-\beta V(|x|)} - 1\right]\right)\\
+        &= \frac{1}{2\lambda^{3}} \int d^3x \left[e^{-\beta V(|x|)} - 1\right]\\
+        &= \frac{1}{2\lambda^{3}} \int_0^{2\pi} d \phi \int_0^\pi \sin \theta d\theta\int_0^\infty r^2dr \left[e^{-\beta V(|r|)} - 1\right]\\
+        &= \frac{2\pi}{\lambda^{3}} \int_0^\infty r^2dr \left[e^{-\beta V(|r|)} - 1\right]
+  \end{align*}
+  Now we can use this to evaluate $a_2$. 
+  \begin{align*}
+    a_2  = -b_2 
+        &= -\frac{2 \pi}{\lambda^3} \int_0^\infty(e^{-\beta V(r)} - 1)r^2dr\\
         &= -\frac{2 \pi}{\lambda^3} \int_0^\alpha(0 - 1)r^2dr -\frac{2 \pi}{\lambda^3}\int_\alpha^\infty(1 - 1)r^2dr\\
         &= \frac{2 \pi}{\lambda^3} \int_0^\alpha r^2dr\\
-        &= \frac{2 \pi \alpha^3}{3\lambda^3}
+        &= \frac{2 \pi \alpha^3}{3\lambda^3}\\
   \end{align*}
 \end{minipage}
 
 5.
 \begin{minipage}[t]{0.9\textwidth}
+  Doing a similar calculation to the above:
   \begin{align*}
-    a_2 &= -\frac{2 \pi}{\lambda^3} \int_0^\infty(e^{-V(r) / kT} - 1)r^2dr\\
-        &= -\frac{2 \pi}{\lambda^3} \left[\int_0^\alpha(0 - 1)r^2dr + \int_\alpha^{2\alpha}(e^{v_0} + 1)r^2dr + \int_{2\alpha}^\infty(1 - 1)r^2dr\right]\\
-        &= -\frac{2 \pi}{\lambda^3} \left[\frac{\alpha^3}{3} + (e^{v_0} + 1)\left(\frac{8 \alpha^3}{3} - \frac{\alpha^3}{3}\right)\right]\\
-        &= -\frac{2 \pi \alpha^3 (7e^{v_0} + 8 )}{3\lambda^3}
+    a_2 &= -\frac{2 \pi}{\lambda^3} \int_0^\infty(e^{-\beta V(r)} - 1)r^2dr\\
+        &= -\frac{2 \pi}{\lambda^3} \left[\int_0^\alpha(0 - 1)r^2dr + \int_\alpha^{2\alpha}(e^{\beta v_0/kT} - 1)r^2dr - \int_{2\alpha}^\infty(1 - 1)r^2dr\right]\\
+        &= -\frac{2 \pi}{\lambda^3} \left[-\frac{\alpha^3}{3} + (e^{\beta v_0} - 1)\left(\frac{8 \alpha^3}{3} - \frac{\alpha^3}{3}\right)\right]\\
+        &= -\frac{2 \pi \alpha^3 (7e^{v_0/kT} - 8 )}{3\lambda^3}
   \end{align*}
+  It can been seen from this that $a_2$ is negative for low $T$, and is positive for high $T$ when the exponential is large and small respevtively.
+  Thus $a_2$ does change sign with temperature.
 \end{minipage}
 
 \end{document}
