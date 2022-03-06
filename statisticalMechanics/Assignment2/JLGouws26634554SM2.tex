@@ -1,0 +1,200 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{amsmath,amsfonts,amsthm,amssymb, mathtools,steinmetz, gensymb, siunitx}	% LOADS USEFUL MATH STUFF
+\usepackage{xcolor,graphicx}
+\usepackage[a4paper]{geometry} 				% ADJUSTS PAGE
+\usepackage{setspace}
+\usepackage{physics}
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{pgf,tikz,pgfplots}
+\usepackage{mathrsfs}
+\usepackage{amsbsy}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{newpxtext}
+\usepackage{unicode-math}
+\usepackage{braket}
+\usepackage{tensor}
+\usepackage{tabstackengine}
+\setmathfont{Libertinus Math}
+\usepackage[frak=euler]{mathalpha}
+
+\usetikzlibrary{decorations.pathreplacing,decorations.markings}
+\usepgfplotslibrary{fillbetween}
+
+\newgeometry{left=1cm,top = 2.5cm, bottom = 1.75cm, right = 1cm}
+
+\newcommand{\defeq}{:=}
+\newcommand\block[1]{\hspace*{#1}}
+\newcommand{\rpm}{\sbox0{$1$}\sbox2{$\scriptstyle\pm$}
+	  \raise\dimexpr(\ht0-\ht2)/2\relax\box2 }
+\newcommand{\af}{\pmb{\hat a_1}}
+\newcommand{\as}{\pmb{\hat a_2}}
+\newcommand{\at}{\pmb{\hat a_3}}
+\newcommand\uv[1]{\pmb{\hat {#1}}}
+\newcommand\vect[1]{\pmb{{#1}}}
+\newcommand\dprod{\pmb{\cdot}}
+
+\setstackEOL{;}% row separator
+\setstackTAB{,}% column separator
+\setstacktabbedgap{1ex}% inter-column gap
+\setstackgap{L}{1.0\normalbaselineskip}% inter-row baselineskip
+\newcommand\rbm[1]{\left(\Matrixstack{#1}\right)}
+	  
+\pgfplotsset{compat=newest}
+\newlength{\QNo}
+\settowidth{\QNo}{2.}
+
+\newlength{\QLetter}
+\settowidth{\QLetter}{(a)}
+
+\pagestyle{fancy}
+\rhead{Statistical Physics Problem Set}
+\lhead{J. L. Gouws}
+
+
+\begin{document}
+\fontencoding{T1}
+\fontfamily{ppl}\selectfont
+{\Large \textbf{Statistical Physics Tutorial 2}} \hfill {\Large \textbf{J L Gouws}}\\
+\block{1.0cm} {\large \textbf{\today}} \hfill {\large \textbf{26634554}}\\
+\thispagestyle{empty}
+\fontencoding{T1}
+
+1.
+\begin{minipage}[t]{0.9\textwidth}
+  a)
+  \begin{minipage}[t]{0.9\textwidth}
+    \begin{equation*}
+      H_N\{s_i\} = -h\sum_{i = 1}^N s_i
+    \end{equation*}
+    Thus:
+    \begin{align*}
+      Z_N &= \sum_{s_1 = \pm 1}\sum_{s_2 = \pm 1}\cdots \sum_{s_N = \pm 1}\exp\left\{-\beta h \sum_{i = 1}^N s_i \right\}\\
+          &= \sum_{s_1 = \pm 1}\sum_{s_2 = \pm 1}\cdots \sum_{s_{N-1} = \pm 1}\exp\left\{-\beta h \sum_{i = 1}^{N - 1} s_i \right\} \left(\sum_{S_N = \pm 1}\exp\left\{-\beta h s_N\right\}\right)\\
+          &= \sum_{s_1 = \pm 1}\sum_{s_2 = \pm 1}\cdots \sum_{s_{N-1} = \pm 1}\exp\left\{-\beta h \sum_{i = 1}^{N - 1} s_i \right\} \left(e^{\beta h} + e^{-\beta h}\right)\\
+          &= \sum_{s_1 = \pm 1}\sum_{s_2 = \pm 1}\cdots \sum_{s_{N-1} = \pm 1}\exp\left\{-\beta h \sum_{i = 1}^{N - 1} s_i \right\} 2 \cosh(\beta h)\\
+          &= 2 \cosh(\beta h)\sum_{s_1 = \pm 1}\sum_{s_2 = \pm 1}\cdots \sum_{s_{N-1} = \pm 1}\exp\left\{-\beta h \sum_{i = 1}^{N - 1} s_i \right\} \\
+          &= 2 \cosh(\beta h)Z_{N-1}
+    \end{align*}
+    And $Z_1 = e^{\beta h} + e^{-\beta h} = 2 \cosh(\beta h)$. It follows that:
+    \begin{equation*}
+      Z_N = [2 \cosh(\beta h)]^N
+    \end{equation*}
+    Now for the average magnetization $\langle s_i \rangle$:
+    \begin{align*}
+      \langle s_i \rangle &= \frac{1}{Z_N}\sum_{s_1 = \pm 1}s_1\sum_{s_2 = \pm 1}s_2\cdots \sum_{s_N = \pm 1} s_N\exp\left\{-\beta h \sum_{i = 1}^N s_i \right\}\\
+                          &= \frac{1}{Z_N}\sum_{s_1 = \pm 1}s_1\sum_{s_2 = \pm 1}s_2\cdots \sum_{s_{N-1} = \pm 1} \exp\left\{-\beta h \sum_{i = 1}^{N-1} s_i \right\}\sum_{s_N = \pm 1} s_N\exp\left\{-\beta h  s_N \right\}\\
+                          &= \frac{1}{Z_N}\sum_{s_1 = \pm 1}s_1\sum_{s_2 = \pm 1}s_2\cdots \sum_{s_{N-1} = \pm 1} \exp\left\{-\beta h \sum_{i = 1}^{N-1} s_i \right\}\left[-2 \sinh (\beta h)\right]\\
+                          &\quad \vdots\\
+                          &= \frac{\left[-2 \sinh (\beta h)\right]^N}{Z_N} \\
+                          &= \left[- \tanh (\beta h)\right]^N 
+    \end{align*}
+  \end{minipage}
+\end{minipage}
+
+2.
+\begin{minipage}[t]{0.9\textwidth}
+  The cannonical partition function for an ideal gas is:
+  \begin{align*}
+    Z_N &= \frac{1}{h^3N!} \int d^{3N}p_{\ } d^{3N}qe^{-\beta H}\\
+        &= \frac{1}{\lambda^{3N}N!} \int d^{3N}q \exp\left\{-\beta \sum\limits_{i < j} u_{ij}\right\}\\
+        &= \frac{1}{\lambda^{3N}N!} \int d^{3N}q e^{-\beta \times 0}\\
+        &= \frac{1}{\lambda^{3N}N!} \int d^{3N}q \\
+        &= \frac{V^N}{\lambda^{3N}N!}
+  \end{align*}  
+  Since there is no interaction between ideal gas molecules.
+  We can use this to evaluate the grand partion function for an ensemble of ideal gas samples:
+  \begin{align*}
+    \mathfrak{Z} &= \sum_{N = 0}^\infty z^N \frac{V^N}{\lambda^{3N}N!}\\
+                 &= \sum_{N = 0}^\infty \frac{(zV/\lambda^3)^N}{N!}\\
+                 &= e^{zV/\lambda^3}\\
+  \end{align*}
+  We also have that:
+  \begin{equation*}
+    P = \frac{k_BT}{V} \ln \mathfrak{Z} = z\frac{k_BT}{\lambda^3} \Rightarrow \frac{P}{k_BT} = \frac{z}{\lambda^3}
+  \end{equation*}
+  and:
+  \begin{equation*}
+    \langle N\rangle = z \frac{\partial}{\partial z} \left[ \frac{zV}{\lambda^3} \right] = \frac{zV}{\lambda^3} \Rightarrow \frac{\langle N \rangle}{V} = \frac{z}{\lambda^3}
+  \end{equation*}
+  From which we deduce:
+  \begin{equation*}
+    \frac{P}{k_BT} = \frac{\langle N \rangle}{V} \Rightarrow PV = \langle N \rangle k_BT
+  \end{equation*}
+\end{minipage}
+
+3.
+\begin{minipage}[t]{0.9\textwidth}
+  We have:
+  \begin{align*}
+                & \frac{1}{\lambda^3} \sum_{l=1}^\infty b_l z^l = \frac{P}{k_BT} = \frac{1}{\lambda^3} \sum_{l =1}^\infty a_l \times \left(\lambda^3 \frac{\langle N\rangle}{V} \right)^l\\
+    \Rightarrow & \sum_{l=1}^\infty b_l z^l =\sum_{l =1}^\infty a_l \times \left(\sum_{k=1}^\infty k b_k z^k\right)^l
+  \end{align*}
+  Now we match coefficients of $z$. The only way to get a $z$ term on the right handside is if $l = k = 1$:
+  \begin{equation*}
+    b_1z = a_1 \times b_1 z \Rightarrow a_1 = 1
+  \end{equation*}
+  Also note that:
+  \begin{equation*}
+    b_1 = \frac{1}{V}\int_Vd^3r = 1 \Rightarrow a_1=b_1 = 1
+  \end{equation*}
+  For the $z^2$ terms, the only way to get $z^2$ on the right is if $l = 1$ and $k = 2$ or if $l = 2$ and $k = 1$
+  \begin{align*}
+                & b_2z^2 = a_1 \times (2 b_2 z^2) + a_2 \times (b_1 z^1)^2\\
+    \Rightarrow & b_2 = 2 b_2 + a_2 \\
+    \Rightarrow & a_2 = - b_2
+  \end{align*}
+  Where I used the fact that $a_1 = b_1 = 1$.
+  For the $z^3$ terms, the only way to get $z^3$ on the right is if $l = l$ and $k = 3$ or if $l = 2$ and $k = 1, 2$ (cross multiplied terms) and $l = 3$. This is because $3$ is a prime number.
+  \begin{align*}
+                & b_3z^3 = a_1 \times (3 b_3 z^3) + a_2 \times (b_1 z \times 2 b_2 z^2 + 2 b_2 z^2 \times b_1 z) + a_3 \times (b_1 z)^3\\
+    \Rightarrow & b_3 = 3 b_3 + (-b_2)(4 b_2) + a_3\\
+    \Rightarrow & a_3 = 4 b_2^2 - 2 b_3
+  \end{align*}
+\end{minipage}
+
+4.
+\begin{minipage}[t]{0.9\textwidth}
+  We wish to find $a_2 = -b_2$, to this end note that:
+  \begin{align*}
+    b_2 &= \frac{\lambda^3}{2!V\lambda^{3 \times 2}} \int d^3q_1\int d^3q_2f_{12}\\
+        &= \frac{1}{2V\lambda^{3}} \int d^3q_1 \int d^3(q_2 - q_1)\left[e^{-\beta V(|q_2 - q_1|)} - 1\right]\\
+        &= \frac{1}{2V\lambda^{3}} \int d^3q_1 \int d^3x \left[e^{-\beta V(|x|)} - 1\right]\\
+  \end{align*}
+  Where $x = q_2 - q_1$.
+  Provided that the interaction range of the potential is short the integrals can be treated as approximately independent.
+  This follows from the fact that if $q_1$ starts differing largely from $q_2$, the integrand dependent on $x$ becomes negligible ($V \to 0$). Thus the integral over $x$ cannot vary much with changing $q_1$. Hence:
+  \begin{align*}
+    b_2 &\approx \frac{1}{2V\lambda^{3}} \left(\int d^3q_1\right)\left( \int d^3x \left[e^{-\beta V(|x|)} - 1\right]\right)\\
+        &= \frac{1}{2\lambda^{3}} \int d^3x \left[e^{-\beta V(|x|)} - 1\right]\\
+        &= \frac{1}{2\lambda^{3}} \int_0^{2\pi} d \phi \int_0^\pi \sin \theta d\theta\int_0^\infty r^2dr \left[e^{-\beta V(|r|)} - 1\right]\\
+        &= \frac{2\pi}{\lambda^{3}} \int_0^\infty r^2dr \left[e^{-\beta V(|r|)} - 1\right]
+  \end{align*}
+  Now we can use this to evaluate $a_2$. 
+  \begin{align*}
+    a_2  = -b_2 
+        &= -\frac{2 \pi}{\lambda^3} \int_0^\infty(e^{-\beta V(r)} - 1)r^2dr\\
+        &= -\frac{2 \pi}{\lambda^3} \int_0^\alpha(0 - 1)r^2dr -\frac{2 \pi}{\lambda^3}\int_\alpha^\infty(1 - 1)r^2dr\\
+        &= \frac{2 \pi}{\lambda^3} \int_0^\alpha r^2dr\\
+        &= \frac{2 \pi \alpha^3}{3\lambda^3}\\
+  \end{align*}
+\end{minipage}
+
+5.
+\begin{minipage}[t]{0.9\textwidth}
+  Doing a similar calculation to the above:
+  \begin{align*}
+    a_2 &= -\frac{2 \pi}{\lambda^3} \int_0^\infty(e^{-\beta V(r)} - 1)r^2dr\\
+        &= -\frac{2 \pi}{\lambda^3} \left[\int_0^\alpha(0 - 1)r^2dr + \int_\alpha^{2\alpha}(e^{\beta v_0/kT} - 1)r^2dr - \int_{2\alpha}^\infty(1 - 1)r^2dr\right]\\
+        &= -\frac{2 \pi}{\lambda^3} \left[-\frac{\alpha^3}{3} + (e^{\beta v_0} - 1)\left(\frac{8 \alpha^3}{3} - \frac{\alpha^3}{3}\right)\right]\\
+        &= -\frac{2 \pi \alpha^3 (7e^{v_0/kT} - 8 )}{3\lambda^3}
+  \end{align*}
+  It can been seen from this that $a_2$ is negative for low $T$, and is positive for high $T$ when the exponential is large and small respevtively.
+  Thus $a_2$ does change sign with temperature.
+\end{minipage}
+
+\end{document}

@@ -1,0 +1,181 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath,amsfonts,amsthm,amssymb, mathtools,steinmetz, gensymb, siunitx}	% LOADS USEFUL MATH STUFF
+\usepackage{xcolor,graphicx}
+\usepackage[a4paper]{geometry} 				% ADJUSTS PAGE
+\usepackage{setspace}
+\usepackage{physics}
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{pgf,tikz,pgfplots}
+\usepackage{mathrsfs}
+\usepackage{amsbsy}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{newpxtext}
+\usepackage{unicode-math}
+\usepackage{braket}
+\usepackage{tensor}
+\setmathfont{Libertinus Math}
+
+\usetikzlibrary{decorations.pathreplacing,decorations.markings}
+\usepgfplotslibrary{fillbetween}
+
+\newgeometry{left=1cm,top = 2.5cm, bottom = 1.75cm, right = 1cm}
+
+\newcommand{\defeq}{:=}
+\newcommand\block[1]{\hspace*{#1}}
+\newcommand{\rpm}{\sbox0{$1$}\sbox2{$\scriptstyle\pm$}
+	  \raise\dimexpr(\ht0-\ht2)/2\relax\box2 }
+\newcommand{\af}{\pmb{\hat a_1}}
+\newcommand{\as}{\pmb{\hat a_2}}
+\newcommand{\at}{\pmb{\hat a_3}}
+\newcommand\uv[1]{\pmb{\hat {#1}}}
+\newcommand\vect[1]{\pmb{{#1}}}
+\newcommand\dprod{\pmb{\cdot}}
+
+\usepackage{tabstackengine}
+\setstackEOL{;}% row separator
+\setstackTAB{,}% column separator
+\setstacktabbedgap{1ex}% inter-column gap
+\setstackgap{L}{1.0\normalbaselineskip}% inter-row baselineskip
+\newcommand\rbm[1]{\left(\Matrixstack{#1}\right)}
+	  
+\pgfplotsset{compat=newest}
+\newlength{\QNo}
+\settowidth{\QNo}{2.}
+
+\newlength{\QLetter}
+\settowidth{\QLetter}{(a)}
+
+\pagestyle{fancy}
+\rhead{Electromagnetism Problem Set}
+\lhead{J. L. Gouws}
+
+
+\begin{document}
+\fontencoding{T1}
+\fontfamily{ppl}\selectfont
+{\Large \textbf{Electromagnetism Assignment 1}} \hfill {\Large \textbf{J L Gouws}}\\
+\block{1.0cm} {\large \textbf{\today}} \hfill {\large \textbf{26634554}}\\
+\thispagestyle{empty}
+\fontencoding{T1}
+
+1.
+\begin{minipage}[t]{0.90\textwidth}
+  An observation of some source is being made at a position $\vec{r}$.
+  Electromagnetic waves take time to travel through space, they travel at a speed of $c$ in free space for all reference frames.
+  Since we are observing the source from some point $\vec{r}$, we are actually seeing what was happening at the source when the EM waves were emmitted.
+  Since EM waves travel at speed $c$ in free space, the time it takes for the waves to travel from source point $\vec{r}'$ to an observation point at $\vec{r}$ is $\frac{|r - r'|}{c}$.
+  Hence, the waves that are observed at time $t$ originiated at time:
+  \begin{equation*}
+    t_r = t - \frac{|\vec{r} - \vec{r}'|}{c}
+  \end{equation*}
+  Thus to find the potential that we are observing we need to integrate over the source at space-time point $(t_r, \vec{r}')$.\\
+\end{minipage}
+
+2.
+\begin{minipage}[t]{0.9\textwidth}
+  a).
+  \begin{minipage}[t]{\textwidth}
+    We have:
+    \begin{equation*}
+      \frac{\partial}{\partial x_i} f(|\vec{r}-\vec{r}'|) = f'(|\vec{r}-\vec{r}'|)\frac{\partial |\vec{r} - \vec{r}'|}{\partial x_i} = f'(|\vec{r}-\vec{r}'|)\frac{\partial}{\partial x_i} \left( \sum_i(x_i - x_i')^2\right)^{1/2} = f'(|\vec{r}-\vec{r}'|) \frac{2(x_i - x_i')}{2|r - r'|}
+    \end{equation*}
+    Similarly:
+    \begin{equation*}
+      \frac{\partial}{\partial x_i'} f(|\vec{r}-\vec{r}'|) = f'(|\vec{r}-\vec{r}'|)\frac{\partial |\vec{r} - \vec{r}'|}{\partial x_i'} = f'(|\vec{r}-\vec{r}'|)\frac{\partial}{\partial x_i'} \left( \sum_i(x_i - x_i')^2\right)^{1/2} = f'(|\vec{r}-\vec{r}'|) \frac{2(x_i - x_i') \times (-1)}{2|r - r'|}
+    \end{equation*}
+    From which it is clear that:
+    \begin{equation*}
+      \frac{\partial}{\partial x_i} f(|\vec{r}-\vec{r}'|) = f'(|\vec{r}-\vec{r}'|) \frac{(x_i - x_i')}{|r - r'|} = - \frac{\partial}{\partial x_i'} f(|\vec{r}-\vec{r}'|)
+    \end{equation*}
+  \end{minipage}
+
+  b)
+  \begin{minipage}[t]{\textwidth}
+    First calculating $\frac{\partial V}{\partial t}$:
+    \begin{align*}
+      \frac{\partial V}{\partial t} &= \frac{1}{4\pi\epsilon_0} \frac{\partial}{\partial t}\int_V d^3\vec{r}' \frac{\rho(\vec{r}', t_r)}{|r-r'|}\\
+                                    &= \frac{1}{4\pi \epsilon_0}\int_V d^3\vec{r}' \frac{1}{|r-r'|} \frac{\partial \rho(\vec{r}', t_r)}{\partial t} \\
+                                    &= \frac{1}{4\pi \epsilon_0}\int_V d^3\vec{r}' \frac{1}{|r-r'|} \frac{\partial \rho(\vec{r}', t_r)}{\partial t_r} \frac{\partial t_r}{\partial t}\\
+                                    &= \frac{1}{4\pi \epsilon_0}\int_V d^3\vec{r}' \frac{1}{|r-r'|} \frac{\partial \rho(\vec{r}', t_r)}{\partial t_r}
+    \end{align*}
+  \end{minipage}
+\end{minipage}
+
+2.
+\begin{minipage}[t]{0.9\textwidth}
+  $\phantom{\text{b)}}$
+  \begin{minipage}[t]{\textwidth}
+    And now, calculating $\nabla \cdot \vec{A}$:
+    \begin{align*}
+      \nabla \cdot\vec{A} &= \frac{\mu_0}{4\pi} \nabla \cdot \int_V d^3\vec{r} ' \frac{\vec{J}(\vec{r}', t_r)}{|r-r'|}\\
+                     &= \frac{\mu_0}{4\pi} \int_V d^3\vec{r}' \nabla \cdot \left( \frac{\vec{J}(\vec{r}', t_r)}{|r-r'|} \right) \\
+                     &= \frac{\mu_0}{4\pi} \int_V d^3\vec{r}' \left(\frac{1}{|r - r'|} \nabla \cdot \vec{J}(\vec{r}', t_r) + J(\vec{r}', t_r) \cdot \nabla \frac{1}{|r-r'|}\right)\\
+                     &= \frac{\mu_0}{4\pi} \int_V d^3\vec{r}' \left(\frac{1}{|r - r'|} \nabla \cdot \vec{J}(\vec{r}', t_r) - J(\vec{r}', t_r) \cdot \nabla' \frac{1}{|r-r'|}\right)
+    \end{align*}
+    Note that:
+    \begin{equation*}
+      \nabla' \cdot \left(\frac{\vec{J}(\vec{r}', t_r)}{|\vec{r} - \vec{r}'|}  \right) = \frac{1}{|\vec{r} - \vec{r}'|}\nabla' \cdot \vec{J}(\vec{r}', t_r)  + \vec{J}(\vec{r}', t_r) \cdot \nabla' \left(\frac{1}{|\vec{r} - \vec{r}'|}  \right)
+    \end{equation*}
+    And so:
+    \begin{align}
+      \nabla \cdot\vec{A} &= \frac{\mu_0}{4\pi} \int_V d^3\vec{r}' \left(\frac{1}{|r - r'|} \nabla \cdot \vec{J}(\vec{r}', t_r) + \frac{1}{|\vec{r} - \vec{r}'|} \nabla' \cdot \vec{J}(\vec{r}', t_r) - \nabla' \cdot \left(\frac{\vec{J}(\vec{r}', t_r)}{|\vec{r} - \vec{r}'|}  \right)\right)
+        \label{eq:divpot}
+    \end{align}
+    This last integral is:
+    \begin{align*}
+      \frac{\mu_0}{4\pi} \int_V d^3\vec{r}' \nabla' \cdot \left(\frac{\vec{J}(\vec{r}', t_r)}{|\vec{r} - \vec{r}'|}  \right) &= \frac{\mu_0}{4\pi} \int_S \frac{\vec{J}(\vec{r}', t_r) \cdot d\vec{a}}{|\vec{r} - \vec{r}'|} \\
+                                                                                                                             &= 0
+    \end{align*}
+    Since there is no current density at the edges of the surface.
+    Also note that, where $\vec{J(\vec{r}')}$ is the current density with the time held constant:
+    \begin{equation*}
+      \nabla' \cdot \vec{J}(\vec{r}', t_r) = \nabla' \left(\vec{J}(\vec{r}') \right) + \frac{\partial \vec{J}}{\partial t_r} \nabla ' t_r(|\vec{r} - \vec{r}'|) = - \frac{\partial \rho}{\partial t_r} -  \frac{\partial \vec{J}}{\partial t_r} \nabla t_r(|\vec{r} - \vec{r}|)
+    \end{equation*}
+    Where I used the continuity condition and the result from 2.a).
+    Also:
+    \begin{equation*}
+      \nabla \cdot \vec{J}(r',t_r) = \frac{\partial \vec{J}}{\partial t_r} \nabla t_r
+    \end{equation*}
+    substituting this back into Eq.~\ref{eq:divpot} we see:
+    \begin{align*}
+      \nabla \cdot\vec{A} &= \frac{\mu_0}{4\pi} \int_V d^3\vec{r}' \left[\frac{1}{|r - r'|} \frac{\partial \vec{J}}{\partial t_r} \nabla t_r + \frac{1}{|\vec{r} - \vec{r}'|}\left(-\frac{\partial \rho}{\partial t_r} -  \frac{\partial \vec{J}}{\partial t_r} \nabla t_r(|\vec{r} - \vec{r}|)\right) \right]\\
+                          &= -\frac{\mu_0}{4\pi} \int_V d^3\vec{r}' \frac{1}{|\vec{r} - \vec{r}'|}\frac{\partial \rho}{\partial t_r} \\
+                          &= -\mu_0\epsilon_0\left(\frac{1}{4\pi\epsilon_0} \int_V d^3\vec{r}' \frac{1}{|\vec{r} - \vec{r}'|}\frac{\partial \rho}{\partial t_r} \right)\\
+                          &= -\mu_0\epsilon_0\frac{\partial V}{\partial t} \\
+                          &\Rightarrow \nabla \cdot\vec{A} + \frac{1}{c^2} \frac{\partial V}{\partial t}
+    \end{align*}
+  \end{minipage}
+\end{minipage}
+
+3.
+\begin{minipage}[t]{0.9\textwidth}
+  a).
+  \begin{minipage}[t]{\textwidth}
+    \begin{align*}
+      \vec{J}(\vec{r}, t) = \frac{Q}{\Delta A \Delta t} \hat n = \frac{Q \Delta l}{\Delta A \Delta l\Delta t} \hat n = \frac{Q}{\Delta A \Delta l}\frac{\Delta l}{\Delta t} \hat n = \frac{Q}{\Delta V}v \hat n = \rho(\vec{r}, t) \vec{v}
+    \end{align*}
+  \end{minipage}
+
+  b).
+  \begin{minipage}[t]{\textwidth}
+    \begin{align*}
+      V &= \frac{1}{4\pi\epsilon_0} \int_V d^3\vec{r}' \frac{\rho(\vec{r}', t_r)}{|\vec{r}-\vec{r}'|}\\
+        &= \frac{1}{4\pi\epsilon_0} \int_V r'dr' d \theta' dz' \frac{\lambda \delta(r' - b) \delta(z')}{|\vec{r}-\vec{r}'|} \\
+        &= \frac{\lambda}{4\pi\epsilon_0} \int_V r'dr' d \theta' dz' \frac{ \delta(r' - b) \delta(z')}{\sqrt{r^2 + r'^2 - 2 r r' \cos(\theta - \theta ') + (z - z')^2}} \\
+        &= \frac{\lambda }{4\pi\epsilon_0} \int_{\mathbb{R}^2} r'dr' d \theta' \frac{\delta(r' - b) }{\sqrt{r^2 + r'^2 - 2 r r' \cos(\theta - \theta ') + z^2)}} \\
+        &= \frac{b \lambda }{4\pi\epsilon_0} \int_0^{2\pi}d \theta' \frac{1}{\sqrt{r^2 + b^2 + z^2- 2 r b \cos(\theta - \theta ')}} \\
+    \end{align*}
+
+    \begin{align*}
+      \vec{A} &= \frac{\mu_0}{4\pi} \int_V d^3\vec{r}' \frac{\vec{J}(\vec{r}', t_r)}{|\vec{r}-\vec{r}'|}\\
+              &= \frac{\mu_0}{4\pi} \int_V d^3\vec{r}' \frac{\vec{v}\rho(\vec{r}', t_r)}{|\vec{r}-\vec{r}'|}\\
+        &= \frac{\mu_0}{4\pi} \int_V r'dr' d \theta' dz' \frac{\omega b \lambda \delta(r' - b) \delta(z')}{|\vec{r}-\vec{r}'|} \\
+    \end{align*}
+  \end{minipage}
+\end{minipage}
+
+\end{document}

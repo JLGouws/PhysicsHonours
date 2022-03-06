@@ -1,0 +1,239 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath,amsfonts,amsthm,amssymb, mathtools,steinmetz, gensymb, siunitx}	% LOADS USEFUL MATH STUFF
+\usepackage{xcolor,graphicx}
+\usepackage[a4paper]{geometry} 				% ADJUSTS PAGE
+\usepackage{setspace}
+\usepackage{physics}
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{pgf,tikz,pgfplots}
+\usepackage{mathrsfs}
+\usepackage{amsbsy}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{newpxtext}
+\usepackage{unicode-math}
+\usepackage{braket}
+\usepackage{tensor}
+\setmathfont{Libertinus Math}
+
+\usetikzlibrary{decorations.pathreplacing,decorations.markings}
+\usepgfplotslibrary{fillbetween}
+
+\newgeometry{left=1cm,top = 2.5cm, bottom = 1.75cm, right = 1cm}
+
+\newcommand{\defeq}{:=}
+\newcommand\block[1]{\hspace*{#1}}
+\newcommand{\rpm}{\sbox0{$1$}\sbox2{$\scriptstyle\pm$}
+	  \raise\dimexpr(\ht0-\ht2)/2\relax\box2 }
+\newcommand{\af}{\pmb{\hat a_1}}
+\newcommand{\as}{\pmb{\hat a_2}}
+\newcommand{\at}{\pmb{\hat a_3}}
+\newcommand\uv[1]{\pmb{\hat {#1}}}
+\newcommand\vect[1]{\pmb{{#1}}}
+\newcommand\dprod{\pmb{\cdot}}
+
+\usepackage{tabstackengine}
+\setstackEOL{;}% row separator
+\setstackTAB{,}% column separator
+\setstacktabbedgap{1ex}% inter-column gap
+\setstackgap{L}{1.0\normalbaselineskip}% inter-row baselineskip
+\newcommand\rbm[1]{\left(\Matrixstack{#1}\right)}
+	  
+\pgfplotsset{compat=newest}
+\newlength{\QNo}
+\settowidth{\QNo}{2.}
+
+\newlength{\QLetter}
+\settowidth{\QLetter}{(a)}
+
+\pagestyle{fancy}
+\rhead{Quantum mechanics Problem Set}
+\lhead{J. L. Gouws}
+
+
+\begin{document}
+\fontencoding{T1}
+\fontfamily{ppl}\selectfont
+{\Large \textbf{Quantum mechanics Assignment 2}} \hfill {\Large \textbf{J L Gouws}}\\
+\block{1.0cm} {\large \textbf{\today}} \hfill {\large \textbf{26634554}}\\
+\thispagestyle{empty}
+\fontencoding{T1}
+
+1.
+\begin{minipage}[t]{0.90\textwidth}
+  a)
+  \begin{minipage}[t]{\textwidth}
+    For this, first note that:
+    \begin{align*}
+      U^\dagger U &= (A - \langle A \rangle) (A - \langle A \rangle)\\
+                  &= A^2 -2 A\langle A\rangle + \langle A \rangle^2\\
+      \Rightarrow & \bra{\psi} U^\dagger U \ket{\psi}\\
+                  & = \braket{\psi|A^2|\psi} - 2\langle A \rangle \braket{\psi|A\psi} + \langle A \rangle^2 \braket{\psi|\psi}\\
+                  & = \braket{\psi|A^2|\psi} - 2\langle A \rangle \langle A \rangle + \langle A \rangle^2 \\
+                  & = \braket{\psi|A^2|\psi} - \langle A \rangle^2\\
+                  & = \langle (\Delta A)^2 \rangle 
+    \end{align*}
+    Assuming that $\ket{\psi}$ is normalized. Similarly(swaping symbols) $ \braket{\psi|V^\dagger V|\psi} = \langle (\Delta B )^2 \rangle$. Also:
+    \begin{align*}
+     \braket{\psi | U^\dagger V|\psi} &= \braket{\psi |(A - \langle A \rangle) (B - \langle B \rangle)|\psi}\\
+                  &= \braket{\psi|A B|\psi} - \langle A \rangle \braket{\psi|B| \psi}- \langle B \rangle \braket{\psi|A|\psi} + \langle A \rangle \langle B \rangle \\
+                  &= \braket{\psi|A B|\psi} - \langle A \rangle \langle B \rangle
+    \end{align*}
+    Similarly $\braket{\psi | V^\dagger U|\psi} = \braket{\psi|B A|\psi} - \langle A \rangle \langle B \rangle $. Now we have:
+    \begin{align*}
+      \braket{\phi|\phi} &= \left(\bra{\psi} U^\dagger - i\lambda\bra{\psi}V^\dagger \right) \left(U\ket{\psi} + i\lambda V\ket{\psi}\right)\\
+                         &= \bra{\psi} U^\dagger \left(U\ket{\psi} + i\lambda V\ket{\psi}\right)- i\lambda \bra{\psi}V^\dagger \left(U\ket{\psi} + i\lambda V \ket{\psi}\right)\\
+                         &=  \bra{\psi} U^\dagger U\ket{\psi} + i\lambda \bra{\psi} U^\dagger V\ket{\psi}- i\lambda\bra{\psi}V^\dagger U\ket{\psi} + \lambda^2\bra{\psi}V^\dagger  V \ket{\psi}\\
+                         &=  \langle (\Delta A)^2 \rangle + i\lambda \braket{\psi | AB |\psi} + i\lambda \langle A \rangle \langle B \rangle - i\lambda\braket {\psi| B A | \psi} - i\lambda \langle A \rangle \langle B \rangle+ \lambda^2\langle (\Delta B)^2 \rangle\\
+                         &=  \langle (\Delta A)^2 \rangle + i\lambda \braket{\psi | AB - BA|\psi} + \lambda^2\langle (\Delta B)^2 \rangle\\
+                         &=  \langle (\Delta A)^2 \rangle + i\lambda \langle [A,B]\rangle + \lambda^2\langle (\Delta B)^2 \rangle\\
+    \end{align*}
+  \end{minipage}
+
+  b)
+  \begin{minipage}[t]{\textwidth}
+    $\braket{\phi|\phi}$ is minimized when $\frac{\partial}{\partial \lambda} \braket{\phi|\phi} = 0$:
+    \begin{align*}
+                  \frac{\partial}{\partial \lambda} \braket{\phi|\phi} = 0
+      \Rightarrow & \frac{\partial}{\partial \lambda} \left[\langle (\Delta A)^2 \rangle + i\lambda \langle [AB]\rangle + \lambda^2\langle (\Delta B)^2 \rangle\right] = 0\\
+      \Rightarrow & i\langle [A,B]\rangle + 2 \lambda \langle (\Delta B)^2 \rangle = 0\\
+      \Rightarrow &  \lambda = - \frac{i\langle [A,B]\rangle }{2 \langle (\Delta B)^2 \rangle }
+    \end{align*}
+    In order for $\lambda$ to be real, $\langle [A,B]\rangle$ must be purely imaginary.
+    This is true because:
+    \begin{equation*}
+      \left(\bra{} [A, B] \ket{}\right)^* = \bra{} [A, B]^\dagger \ket{} = \bra{} BA - AB \ket{} = -\bra{} AB - BA \ket{} = -\bra{} [A, B] \ket{}
+    \end{equation*}
+    Where I used unlabeled vectors to show that the above holds true for any vectors.
+    Thus we can write:
+    \begin{align*}
+        & \langle[A, B] \rangle = \pm i |\langle[A, B] \rangle|\\
+      \Rightarrow & \lambda = \pm \frac{|\langle[A, B] \rangle|}{2\langle (\Delta B)^2 \rangle }
+    \end{align*}
+  \end{minipage}
+\end{minipage}
+
+$\phantom{1.}$
+\begin{minipage}[t]{0.90\textwidth}
+  $\phantom{b)}$
+  \begin{minipage}[t]{\textwidth}
+    Now the equation for $\braket{\phi | \phi}$ becomes:
+    \begin{equation*}
+      \braket{\phi|\phi} =  \langle (\Delta A)^2 \rangle \mp \lambda |\langle [A,B]\rangle| + \lambda^2\langle (\Delta B)^2 \rangle\\
+    \end{equation*}
+    Since $\braket{\phi|\phi} \geq 0$:
+    \begin{align*}
+      & 0 \leq \langle (\Delta A)^2 \rangle - \frac{|\langle [A,B]\rangle |}{2\langle (\Delta B)^2 \rangle} |\langle [A,B]\rangle | + \frac{|\langle [A, B]\rangle|^2}{4\langle (\Delta B)^2 \rangle^2}\langle (\Delta B)^2 \rangle\\
+        \Rightarrow & 0 \leq \langle (\Delta A)^2 \rangle - \frac{|\langle [A, B]\rangle|^2}{4\langle (\Delta B)^2 \rangle}\\
+        \Rightarrow & \frac{1}{4} |\langle [A, B]\rangle|^2 \leq \langle (\Delta A)^2 \rangle \langle (\Delta B)^2 \rangle
+    \end{align*}
+    Which one can write in the form $\frac{1}{4} \langle i [A,B]\rangle^2 \leq \langle (\Delta A)^2 \rangle \langle (\Delta B)^2 \rangle$, but I think the meaning of the statement clearer in the prior form.\\
+  \end{minipage} 
+
+  c)
+  \begin{minipage}[t]{\textwidth}
+    This statement says that if two observables do not commute(not all eigenstates are simultaneous eigenstates), then there is a lower bound on the product of the deviations of the observables from their mean value.
+    This states that the more precisely you know the value of one observable the less precisely you know the value of another non-commuting observable.
+
+    An example is momentum and position with $[\hat x_i, \hat p_j] = i \hbar \delta_{ij}$, which we can substitute in the generalized uncertainty principle to obtain:
+    \begin{equation*}
+      \frac{1}{4} \hbar^2 \leq \langle (\Delta x_i)^2 \rangle \langle (\Delta p_i)^2 \rangle \Rightarrow \frac{\hbar}{2} \leq \Delta x_i \Delta p_i
+    \end{equation*}
+    Which is the ususal Heisenberg uncertainty principle.
+    The more precisely one knows the position of the particle the less precisely one can know the momentum of the particle.
+  \end{minipage}
+\end{minipage}
+
+2.
+\begin{minipage}[t]{0.9\textwidth}
+  a).
+  \begin{minipage}[t]{\textwidth}
+    Simply expanding:
+    \begin{equation*}
+      [A, BC] = ABC - BCA = ABC - BAC + BAC - BCA = (AB - BA)C + B(AC - CA) = [A,B]C - B[A, C]
+    \end{equation*}\\
+  \end{minipage}
+
+  b).
+  \begin{minipage}[t]{\textwidth}
+    First I check if it holds for $n = 1$:
+    \begin{equation*}
+      [A, B] =  cI = 1cB^0
+    \end{equation*}
+    As required.
+    Now assume that it holds for some $k \geq 1$:
+    \begin{align*}
+      [A, B^{k +1}] &= [A, B^{k} B]\\
+                    &= [A, B^{k} B]\\
+                    &= [A, B^{k}]B + B^k[A, B]\\
+                    &= k c B^{k - 1}B + B^k c I\\
+                    &= k c B^{k} + c B^k I\\
+                    &= (k + 1) c B^{k}
+    \end{align*}
+    As required.\\
+  \end{minipage}
+
+  c).
+  \begin{minipage}[t]{\textwidth}
+    Using the linearity of the commutator:
+    \begin{align*}
+      [A, f(B)] &= [A, \sum_{j = 0}^{\infty}\frac{f^{(j)}(0)}{j!} B^j]\\
+                &= \sum_{j = 0}^{\infty}\frac{f^{(j)}(0)}{j!} [A, B^j]\\
+                &= [A, I] + \sum_{j = 1}^{\infty}\frac{f^{(j)}(0)}{j!} [A, B^j]\\
+                &= \sum_{j = 1}^{\infty}\frac{f^{(j)}(0)}{j!} [A, B^j]\\
+                &= \sum_{j = 1}^{\infty}\frac{f^{(j)}(0)}{j!} j c B^{j - 1}\\
+                &= c \sum_{j = 1}^{\infty}\frac{f^{(j)}(0)}{(j-1)!} B^{j - 1}\\
+                &= c \sum_{k = 0}^{\infty}\frac{f^{(k + 1)}(0)}{k!} B^{k}\\
+                &= c \sum_{k = 0}^{\infty}\frac{[f']^{(k)}(0)}{k!} B^{k}\\
+                &= c f'(B)
+    \end{align*}
+  \end{minipage}
+\end{minipage}
+
+2.
+\begin{minipage}[t]{0.9\textwidth}
+  d).
+  \begin{minipage}[t]{\textwidth}
+    For this question I use the notation:
+    \begin{equation*}
+      [A, B]_n \defeq [\cdots [A, \underbrace{B ], B, ],\cdots, B}_\text{$n$ times}]
+    \end{equation*}
+    To avoid cluttered equations.
+    First I show, by induction:
+    \begin{equation*}
+      \frac{d^n}{dx^n}\left[e^{-x A} B e^{xA} \right] = e^{-x A} [B, A]_n e^{xA}
+    \end{equation*}
+    For $n = 1$
+    \begin{align*}
+      \frac{d}{dx}\left[e^{-x A} B e^{xA} \right] &= \frac{d}{dx}\left[e^{-x A} \right]B e^{xA} + e^{-x A} B \frac{d}{dx}\left[e^{xA}\right]\\
+                                                  &= e^{-x A}(- A) B e^{xA} + e^{-x A} B e^{xA}A\\
+                                                  &= e^{-x A} (- A B) e^{xA} + e^{-x A} B A e^{xA}\\
+                                                  &= e^{-x A} (B A - A B) e^{xA}\\
+                                                  &= e^{-x A} [B,A] e^{xA}
+    \end{align*}
+    Now assume it holds for some $k \geq 1$:
+    \begin{align*}
+    \frac{d^{k + 1}}{dx^{k + 1}}\left[e^{-x A} B e^{xA} \right] &= \frac{d}{dx}\left[e^{-x A} [B, A]_ke^{xA}\right]\\
+                                                                  &= \frac{d}{dx}\left[e^{-x A}\right] [B, A]_k e^{xA}+ e^{-x A} [B, A]_k\frac{d}{dx}\left[e^{xA}\right]\\
+                                                                  &= e^{-x A} (-A) [B, A]_k e^{xA}+ e^{-x A} [B, A]_k e^{xA}A\\
+                                                                  &= e^{-x A} [B, A]_k Ae^{xA} + e^{-x A} (-A [B, A]_k) e^{xA}\\
+                                                                  &= e^{-x A} ([B, A]_k A-A [B, A]_k )e^{xA}\\
+                                                                  &= e^{-x A} [[B, A]_{k}, A] e^{xA}\\
+                                                                  &= e^{-x A} [B, A]_{k + 1} e^{xA}
+    \end{align*}
+    As required.
+    It now follows that:
+    \begin{align*}
+      e^{-x A} B e^{xA} &= \sum_{i = 0}^{\infty}\frac{\frac{d^{i}}{dx^{i}}\left[e^{-x A} B e^{xA} \right]_{x = 0}}{i!} x\\
+                        &= \sum_{i = 0}^{\infty}\frac{e^{0} [B,A]_i e^{0} }{i!} x\\
+                        &= \sum_{i = 0}^{\infty}\frac{[B,A]_i}{i!} x\\
+                        &\Rightarrow e^{-A} B e^{A} = \sum_{i = 0}^{\infty}\frac{1}{i!}[B,A]_i
+    \end{align*}
+    As required.
+  \end{minipage}
+\end{minipage}
+
+\end{document}
