@@ -20,7 +20,7 @@
 \usepackage{tensor}
 \usepackage{tabstackengine}
 \setmathfont{Libertinus Math}
-\usepackage[frak=euler]{mathalpha}
+\usepackage[frak=euler]{mathalfa}
 
 \usetikzlibrary{decorations.pathreplacing,decorations.markings}
 \usepgfplotslibrary{fillbetween}
@@ -106,10 +106,10 @@
 3.
 \begin{minipage}[t]{0.9\textwidth}
   We have:
-  \begin{align*}
-                & \frac{1}{\lambda^3} \sum_{l=1}^\infty b_l z^l = \frac{P}{k_BT} = \frac{1}{\lambda^3} \sum_{l =1}^\infty a_l \times \left(\lambda^3 \frac{\langle N\rangle}{V} \right)^l\\
-    \Rightarrow & \sum_{l=1}^\infty b_l z^l =\sum_{l =1}^\infty a_l \times \left(\sum_{k=1}^\infty k b_k z^k\right)^l
-  \end{align*}
+  \begin{align}
+                & \frac{1}{\lambda^3} \sum_{l=1}^\infty b_l z^l = \frac{P}{k_BT} = \frac{1}{\lambda^3} \sum_{l =1}^\infty a_l \times \left(\lambda^3 \frac{\langle N\rangle}{V} \right)^l \nonumber\\
+    \Rightarrow & \sum_{l=1}^\infty b_l z^l =\sum_{l =1}^\infty a_l \times \left(\sum_{k=1}^\infty k b_k z^k\right)^l \label{eq:coeff}
+  \end{align}
   Now we match coefficients of $z$. The only way to get a $z$ term on the right handside is if $l = k = 1$:
   \begin{equation*}
     b_1z = a_1 \times b_1 z \Rightarrow a_1 = 1
@@ -118,14 +118,14 @@
   \begin{equation*}
     b_1 = \frac{1}{V}\int_Vd^3r = 1 \Rightarrow a_1=b_1 = 1
   \end{equation*}
-  For the $z^2$ terms, the only way to get $z^2$ on the right is if $l = 1$ and $k = 2$ or if $l = 2$ and $k = 1$
+  For the $z^2$ terms, the only way to get $z^2$ on the right of Eq.~\ref{eq:coeff} is if $l = 1$ and $k = 2$ or if $l = 2$ and $k = 1$
   \begin{align*}
                 & b_2z^2 = a_1 \times (2 b_2 z^2) + a_2 \times (b_1 z^1)^2\\
     \Rightarrow & b_2 = 2 b_2 + a_2 \\
     \Rightarrow & a_2 = - b_2
   \end{align*}
   Where I used the fact that $a_1 = b_1 = 1$.
-  For the $z^3$ terms, the only way to get $z^3$ on the right is if $l = l$ and $k = 3$ or if $l = 2$ and $k = 1, 2$ (cross multiplied terms) and $l = 3$. This is because $3$ is a prime number.
+  For the $z^3$ terms, the only way to get $z^3$ on the right of Eq.~\ref{eq:coeff} is if $l = l$ and $k = 3$ or if $l = 2$ and $k = 1, 2$ (cross multiplied terms) or if $l = 3$ and $k = 1$. 
   \begin{align*}
                 & b_3z^3 = a_1 \times (3 b_3 z^3) + a_2 \times (b_1 z \times 2 b_2 z^2 + 2 b_2 z^2 \times b_1 z) + a_3 \times (b_1 z)^3\\
     \Rightarrow & b_3 = 3 b_3 + (-b_2)(4 b_2) + a_3\\
